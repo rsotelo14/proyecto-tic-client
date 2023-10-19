@@ -8,9 +8,9 @@ import uy.um.edu.client.entities.aeropuerto.UsuarioAeropuerto;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "tipo")
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = UsuarioAerolinea.class, name = "usuarioAerolinea"),
-        @JsonSubTypes.Type(value = UsuarioAeropuerto.class, name = "usuarioAeropuerto"),
-        @JsonSubTypes.Type(value = SuperUser.class, name = "superUser")
+        @JsonSubTypes.Type(value = UsuarioAerolinea.class),
+        @JsonSubTypes.Type(value = UsuarioAeropuerto.class),
+        @JsonSubTypes.Type(value = SuperUser.class)
 })
 public class Usuario {
     private Long id;

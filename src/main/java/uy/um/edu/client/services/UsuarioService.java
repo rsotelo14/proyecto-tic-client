@@ -1,5 +1,7 @@
 package uy.um.edu.client.services;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import uy.um.edu.client.entities.Usuario;
@@ -26,6 +28,16 @@ public class UsuarioService {
     }
 
     public void agregarUsuario(Usuario usuario) throws InvalidInformation, EntidadYaExiste {
+        ResponseEntity<?> response = restTemplate.postForEntity("http://localhost:8080/usuarios", usuario, String.class);
+        if (response.getStatusCode() == HttpStatus.CREATED){
+            return;
+        } else if (response.getStatusCode() == HttpStatus.BAD_REQUEST) {
+            throw new InvalidInformation("Informacion invalida");
+        } else if (response.getStatusCode() == HttpStatus.CONFLICT) {
+            throw new EntidadYaExiste("El usuario ya existe");
+        } else if (response.getStatusCode() == HttpStatus.INTERNAL_SERVER_ERROR) {
+            throw new RuntimeException();
+        }
     }
 
     public Usuario obtenerUnoPorCorreo(String correoAeropuerto) {

@@ -1,12 +1,13 @@
 package uy.um.edu.client.entities.aeropuerto;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import uy.um.edu.client.entities.Usuario;
 
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = AdminAeropuerto.class, name = "adminAeropuerto"),
-        @JsonSubTypes.Type(value = MaleteroAeropuerto.class, name = "maleteroAeropuerto")
+        @JsonSubTypes.Type(value = AdminAeropuerto.class),
+        @JsonSubTypes.Type(value = MaleteroAeropuerto.class)
 })
 public class UsuarioAeropuerto extends Usuario {
 

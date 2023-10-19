@@ -1,15 +1,15 @@
 package uy.um.edu.client.entities.aerolinea;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import uy.um.edu.client.entities.Usuario;
 
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = AdminAerolinea.class, name = "adminAerolinea"),
-        @JsonSubTypes.Type(value = EmpleadoAerolinea.class, name = "empleadoAerolinea")
+        @JsonSubTypes.Type(value = AdminAerolinea.class),
+        @JsonSubTypes.Type(value = EmpleadoAerolinea.class)
 })
 public class UsuarioAerolinea extends Usuario {
-
     private Aerolinea aerolinea;
 
     public UsuarioAerolinea(String nombre, String apellido, String email, String password, Aerolinea aerolinea) {

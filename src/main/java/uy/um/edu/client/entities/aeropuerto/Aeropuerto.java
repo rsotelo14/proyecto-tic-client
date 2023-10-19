@@ -1,6 +1,8 @@
 package uy.um.edu.client.entities.aeropuerto;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import uy.um.edu.client.entities.aerolinea.Aerolinea;
 import uy.um.edu.client.entities.vuelos.Vuelo;
 
@@ -40,15 +42,20 @@ public class Aeropuerto {
         return Objects.hash(aeropuertoid, nombre, codigo);
     }
 
+    @JsonIgnore
     private List<Aerolinea> aerolineas=new ArrayList<>();
+    @JsonIgnore
     private List<PuertaAeropuerto> puertas=new ArrayList<>();
 
+    @JsonIgnore
     private List<Vuelo> vuelosSalientes =new ArrayList<>();
 
+    @JsonIgnore
     private List<Vuelo> vuelosEntrantes =new ArrayList<>();
 
     public Aeropuerto() {
     }
+    @JsonIgnore
     private List<UsuarioAeropuerto> usuarios=new ArrayList<>();
 
     public Long getAeropuertoid() {
@@ -138,6 +145,7 @@ public class Aeropuerto {
     public void setVuelosEntrantes(List<Vuelo> vuelosEntrantes) {
         this.vuelosEntrantes = vuelosEntrantes;
     }
+
 
     public List<UsuarioAeropuerto> getUsuarios() {
         return usuarios;
