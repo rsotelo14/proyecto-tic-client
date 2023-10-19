@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="274.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uy.um.edu.client.ui.usuario.LogInController">
+    <center>
+        <AnchorPane prefHeight="317.0" prefWidth="459.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label layoutX="23.0" layoutY="75.0" text="Correo" />
+                <Label layoutX="23.0" layoutY="116.0" text="Contraseña" />
+                <TextField fx:id="txtCorreo" layoutX="158.0" layoutY="69.0" />
+                <TextField fx:id="txtContrasena" layoutX="158.0" layoutY="112.0" />
+
+            </children>
+        </AnchorPane>
+    </center>
+    <top>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Inicio de sesión" BorderPane.alignment="CENTER">
+            <font>
+                <Font size="28.0" />
+            </font>
+        </Text>
+    </top>
+    <bottom>
+        <HBox alignment="CENTER_LEFT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="450.0" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="btnClose" mnemonicParsing="false" onAction="#close" text="Cancelar">
+                    <HBox.margin>
+                        <Insets left="10.0" right="5.0" />
+                    </HBox.margin>
+                </Button>
+                <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#inicioDeSesion" text="Ingresar" />
+            </children>
+        </HBox>
+    </bottom>
+</BorderPane>

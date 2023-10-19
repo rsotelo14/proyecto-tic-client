@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="532.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.usuario.CrearUsuarioController">
+    <center>
+        <AnchorPane prefHeight="317.0" prefWidth="459.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label layoutX="19.0" layoutY="42.0" text="Nombre" />
+                <Label layoutX="19.0" layoutY="84.0" text="Apellido" />
+                <Label layoutX="23.0" layoutY="126.0" text="Correo" />
+                <Label layoutX="15.0" layoutY="161.0" text="Contraseña" />
+                <Label layoutX="19.0" layoutY="199.0" text="Pasaporte" />
+                <Label layoutX="19.0" layoutY="239.0" text="Rol" />
+                <TextField fx:id="txtNombre" layoutX="158.0" layoutY="38.0" />
+                <TextField fx:id="txtApellido" layoutX="158.0" layoutY="79.0" prefHeight="27.0" prefWidth="253.0" />
+                <TextField fx:id="txtCorreo" layoutX="158.0" layoutY="122.0" />
+                <TextField fx:id="txtContrasena" layoutX="158.0" layoutY="157.0" />
+                <TextField fx:id="txtPasaporte" layoutX="158.0" layoutY="195.0" />
+                <RadioButton fx:id="adminToggle" layoutX="158.0" layoutY="239.0" mnemonicParsing="false" text="Administrador" />
+                <RadioButton fx:id="maleteroToggle" layoutX="301.0" layoutY="239.0" mnemonicParsing="false" text="Maletero" />
+            </children>
+        </AnchorPane>
+    </center>
+    <top>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Crear un Usuario" BorderPane.alignment="CENTER">
+            <font>
+                <Font size="28.0" />
+            </font>
+        </Text>
+    </top>
+    <bottom>
+        <HBox alignment="CENTER_LEFT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="50.0" prefWidth="506.0" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="btnClose" mnemonicParsing="false" onAction="#close" text="Cancelar">
+                    <HBox.margin>
+                        <Insets left="10.0" right="5.0" />
+                    </HBox.margin>
+                </Button>
+                <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#guardarUsuario" text="Agregar" />
+            </children>
+        </HBox>
+    </bottom>
+</BorderPane>
