@@ -11,4 +11,6 @@ public class RestTemplateConfig {
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
+
+    public static String baseURL = "http://localhost:8080";
 }

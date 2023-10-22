@@ -118,28 +118,25 @@ public class LogInController {
         boolean found= false;
         String correo = txtCorreo.getText();
         String contraseña = txtContrasena.getText();
-        Usuario usuarioEncontrado = new Usuario();
-        Iterable<Usuario> usuarios = usuarioService.obtenerTodos();
-        for (Usuario usuario : usuarios) {
-            if (usuario.getCorreo().equals(correo) && usuario.getContrasena().equals(contraseña)) {
-                usuarioEncontrado = usuario;
-                showAlert("Inicio de sesión exitoso", "Bienvenido " + usuario.getNombre() + " " + usuario.getApellido());
-                limpiarCampos();
-                found = true;
-                break;
-//                return;
+        Usuario usuarioEncontrado = null;
+        try {
+            usuarioEncontrado = usuarioService.obtenerUnoPorCorreo(correo);
+            if (usuarioEncontrado != null) {
+                if (usuarioEncontrado.getContrasena().equals(contraseña)) {
+                    found = true;
+                }
             }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-
         if (!found) {
             showAlert("Inicio de sesión fallido", "El correo o la contraseña son incorrectos");
             return;
         }
-        System.out.println(usuarioEncontrado.getClass());
+        showAlert("Inicio de sesión exitoso", "Bienvenido " + usuarioEncontrado.getNombre() + " " + usuarioEncontrado.getApellido());
         FXMLLoader fxmlLoader = new FXMLLoader();
         Parent root = null;
         if (usuarioEncontrado instanceof AdminAeropuerto) {
-            System.out.println("USUAARIO AEROPUERTO");
             AdministradorAeropuertoController controller = ClientApplication.getContext().getBean(AdministradorAeropuertoController.class);
             controller.setAeropuerto(((AdminAeropuerto) usuarioEncontrado).getAeropuerto());
             controller.setAdmin((AdminAeropuerto) usuarioEncontrado);

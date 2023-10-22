@@ -198,10 +198,7 @@ public class AdministradorAeropuertoController {
         fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
         ObservableList<Usuario> administradores = FXCollections.observableArrayList();
         ObservableList<Usuario> maleteros = FXCollections.observableArrayList();
-        Iterable<Usuario> usuarios = usuarioService.obtenerTodos();
-        System.out.println();
-        Aeropuerto aeropuertoDeseado = aeropuertoService.obtenerUnoPorCodigo(aeropuerto.getCodigo());
-        List<UsuarioAeropuerto> usuarioAeropuertos = aeropuertoDeseado.getUsuarios();
+        Iterable<UsuarioAeropuerto> usuarioAeropuertos = aeropuertoService.obtenerUsuarios(aeropuerto);
         for (UsuarioAeropuerto usuario : usuarioAeropuertos){
             boolean isAdmin = usuario instanceof AdminAeropuerto;
             boolean isMaletero = usuario instanceof MaleteroAeropuerto;
