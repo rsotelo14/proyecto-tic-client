@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import uy.um.edu.client.ClientApplication;
 import uy.um.edu.client.entities.Usuario;
+import uy.um.edu.client.entities.aerolinea.Aerolinea;
 import uy.um.edu.client.entities.aeropuerto.AdminAeropuerto;
 import uy.um.edu.client.entities.aeropuerto.Aeropuerto;
 import uy.um.edu.client.entities.aeropuerto.MaleteroAeropuerto;
@@ -23,6 +24,7 @@ import uy.um.edu.client.entities.vuelos.Vuelo;
 import uy.um.edu.client.exceptions.EntidadYaExiste;
 import uy.um.edu.client.exceptions.InvalidInformation;
 import uy.um.edu.client.exceptions.UsuarioYaExiste;
+import uy.um.edu.client.services.AerolineaService;
 import uy.um.edu.client.services.AeropuertoService;
 import uy.um.edu.client.services.UsuarioService;
 import uy.um.edu.client.services.VueloService;
@@ -103,8 +105,11 @@ public class AdministradorAeropuertoController {
     @FXML
     private Label aeropuertoLabel;
 
+    @FXML
+    private ListView<Aerolinea> aerolineasDisponiblesListView;
     private AdminAeropuerto adminAeropuerto;
     private Aeropuerto aeropuerto;
+
 
 
     public void setAdmin(AdminAeropuerto adminAeropuerto) {
@@ -225,6 +230,44 @@ public class AdministradorAeropuertoController {
         maleterosLabel.setVisible(true);
         administradoresTableView.setVisible(true);
         maleterosTableView.setVisible(true);
+
+    }
+
+    @FXML
+    public void mostrarAerolineasDisponiblesAction(ActionEvent event){
+        ObservableList<Aerolinea> aerolineasObservable = FXCollections.observableArrayList();
+        List<Aerolinea> aerolineasDisponibles = aeropuertoService.obtenerAerolineasDisponibles(aeropuerto);
+        aerolineasObservable.addAll(aerolineasDisponibles);
+        aerolineasDisponiblesListView.setCellFactory(param -> new ListCell<Aerolinea>() {
+            @Override
+            protected void updateItem(Aerolinea item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (empty || item == null || item.getNombre() == null) {
+                    setText(null);
+                } else {
+                    HBox hbox = new HBox(10); // Espaciado entre elementos
+                    Label label = new Label(item.getNombre());
+                    Button asociarBtn = new Button("Asociar");
+
+                    asociarBtn.setOnAction(e -> {
+                        // Lógica para asociar la aerolinea
+                        try {
+                            aeropuertoService.asociarAerolinea(aeropuerto, item);
+                            showAlert("Aerolinea asociada", "La aerolinea se ha asociado correctamente");
+                        } catch (InvalidInformation ex) {
+                            showAlert("Error", "Ha ocurrido un error. El aeropuerto no es ni el de origen ni el de destino");
+                        }
+                        System.out.println("Asociar aerolinea" + item.getNombre());
+                    });
+
+                    HBox.setHgrow(label, Priority.ALWAYS);
+                    hbox.getChildren().addAll(label, asociarBtn);
+                    setGraphic(hbox);
+                }
+            }
+        });
+
 
     }
 

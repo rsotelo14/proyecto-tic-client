@@ -80,6 +80,7 @@ public class AdminAerolineaController {
         Stage stage  = (Stage) source.getScene().getWindow();
         stage.close();
     }
+
     @FXML
     void guardarVuelo(ActionEvent event){
         if (txtCodigoVuelo.getText().equals("") || choiceBoxAeropuertoOrigen.getValue().equals(null) || choiceBoxAeropuertoDestino.getValue().equals(null)

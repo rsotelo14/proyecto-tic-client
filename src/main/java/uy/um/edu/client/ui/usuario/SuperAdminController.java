@@ -12,7 +12,6 @@ import uy.um.edu.client.entities.aeropuerto.AdminAeropuerto;
 import uy.um.edu.client.entities.aeropuerto.Aeropuerto;
 import uy.um.edu.client.exceptions.EntidadYaExiste;
 import uy.um.edu.client.exceptions.InvalidInformation;
-import uy.um.edu.client.exceptions.UsuarioYaExiste;
 import uy.um.edu.client.services.AerolineaService;
 import uy.um.edu.client.services.AeropuertoService;
 import uy.um.edu.client.services.UsuarioService;
@@ -79,7 +78,7 @@ public class SuperAdminController {
             showAlert("Formato de correo incorrecto!", "El correo ingresado no tiene el formato correcto.");
             return;
         }
-        if(!validarFormatoCodigo()){
+        if(!validarFormatoCodigosAerolinea()){
             showAlert("Formato de codigo incorrecto!", "El codigo ingresado no tiene el formato correcto.");
             return;
         }
@@ -123,10 +122,16 @@ public class SuperAdminController {
 
     }
 
-    private boolean validarFormatoCodigo() {
+    private boolean validarFormatoCodigosAerolinea() {
         if (txtCodigoIATA.getText().length()==2 && esMayusculas(txtCodigoIATA.getText()) &&
                 txtCodigoICAO.getText().length()==3 && esMayusculas(txtCodigoICAO.getText())){
             //asumo que el ICAO son mayusculas tmb
+            return true;
+        }
+        return false;
+    }
+    private boolean validarFormatoCodigoAeropuerto() {
+        if (txtCodigoAeropuerto.getText().length()==3 && esMayusculas(txtCodigoAeropuerto.getText())){
             return true;
         }
         return false;
@@ -159,6 +164,10 @@ public class SuperAdminController {
             return;
         }
         String codigoAeropuerto = txtCodigoAeropuerto.getText();
+        if (!validarFormatoCodigoAeropuerto()){
+            showAlert("Formato de codigo incorrecto!", "El codigo ingresado no tiene el formato correcto.");
+            return;
+        }
         
         if (aeropuertoService.obtenerUnoPorCodigo(codigoAeropuerto)!=null){
             showAlert("Codigo ya existe!", "El codigo ingresado ya existe.");
@@ -198,6 +207,7 @@ public class SuperAdminController {
         try {
             usuarioService.agregarUsuario(adminAeropuerto);
             showAlert("Usuario creado!", "El usuario se ha creado correctamente.");
+            limpiarCampos();
         } catch (InvalidInformation e) {
             showAlert("Error!", "La informacion ingresada no es valida.");
         } catch (EntidadYaExiste e) {
@@ -211,6 +221,17 @@ public class SuperAdminController {
         txtNombreAerolinea.clear();
         txtCorreoAerolinea.clear();
         txtContrasenaAerolinea.clear();
+        txtNombreAeropuerto.clear();
+        txtCuidad.clear();
+        txtPais.clear();
+        txtDireccion.clear();
+        txtTelefono.clear();
+        txtCorreoAeropuerto.clear();
+        txtContrasenaAeropuerto.clear();
+        txtCodigoAeropuerto.clear();
+        txtCodigoIATA.clear();
+        txtCodigoICAO.clear();
+        txtPaisDeOrigen.clear();
     }
 
     private void showAlert(String title, String contextText) {

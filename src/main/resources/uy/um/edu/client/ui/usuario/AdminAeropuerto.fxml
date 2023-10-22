@@ -94,13 +94,16 @@
         <Tab text="Asociar Aerolinea">
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                </AnchorPane>
+                    <children>
+                        <ListView id="aerolineasDisponiblesListView" fx:id="aerolineasAValidar" layoutX="190.0" layoutY="86.0" prefHeight="200.0" prefWidth="222.0" />
+                        <Button layoutX="210.0" layoutY="332.0" mnemonicParsing="false" onAction="#mostrarAerolineasDisponiblesAction" text="Mostrar Aerolineas Disponibles" />
+                    </children></AnchorPane>
             </content>
         </Tab>
         <Tab text="Validar Vuelo">
             <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" >
-                    <ListView fx:id="vuelosListView" layoutX="100.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" visible="false" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <ListView fx:id="vuelosListView" layoutX="88.0" layoutY="28.0" prefHeight="273.0" prefWidth="422.0" visible="false" />
                     <Button layoutX="241.0" layoutY="332.0" mnemonicParsing="false" onAction="#mostrarVuelosPendientesAction" text="Mostrar Vuelos" />
 
                 </AnchorPane>
