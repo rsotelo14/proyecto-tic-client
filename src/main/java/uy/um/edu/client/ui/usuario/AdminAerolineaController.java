@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -21,6 +22,8 @@ import uy.um.edu.client.services.AvionService;
 import uy.um.edu.client.services.UsuarioAerolineaService;
 import uy.um.edu.client.services.VueloService;
 
+import java.util.List;
+
 
 @Controller
 public class AdminAerolineaController {
@@ -34,11 +37,11 @@ public class AdminAerolineaController {
     private VueloService vueloService;
     @FXML
     private TextField txtCodigoVuelo;
-    @FXML
-    private TextField txtAeropuertoOrigen;
 
     @FXML
-    private TextField txtAeropuertoDestino;
+    private ChoiceBox<Aeropuerto> choiceBoxAeropuertoOrigen;
+    @FXML
+    private ChoiceBox<Aeropuerto> choiceBoxAeropuertoDestino;
     @FXML
     private TextField txtFechaSalida;
     @FXML
@@ -59,9 +62,17 @@ public class AdminAerolineaController {
 
     private AdminAerolinea adminAerolinea;
     private Aerolinea aerolinea;
+    private List<Aeropuerto> aeropuertosAsociados;
     public void initialize(){
         this.nombreAerolinea.setText(aerolinea.getNombre());
         this.nombreAdminAerolinea.setText(adminAerolinea.getNombre());
+
+        aeropuertosAsociados = (List<Aeropuerto>) aeropuertoService.obtenerAeropuertosPorAerolinea(aerolinea);
+
+        choiceBoxAeropuertoOrigen.getItems().addAll(aeropuertosAsociados);
+        choiceBoxAeropuertoOrigen.getItems().add(null);
+        choiceBoxAeropuertoDestino.getItems().addAll(aeropuertosAsociados);
+        choiceBoxAeropuertoDestino.getItems().add(null);
     }
     @FXML
     void close(ActionEvent actionEvent) {
@@ -71,7 +82,7 @@ public class AdminAerolineaController {
     }
     @FXML
     void guardarVuelo(ActionEvent event){
-        if (txtCodigoVuelo.getText().equals("") || txtAeropuertoOrigen.getText().equals("") || txtAeropuertoDestino.getText().equals("")
+        if (txtCodigoVuelo.getText().equals("") || choiceBoxAeropuertoOrigen.getValue().equals(null) || choiceBoxAeropuertoDestino.getValue().equals(null)
                 || txtFechaSalida.getText().equals("") || txtFechaLlegada.getText().equals("")
                  || txtAvion.getText().equals("") || txtHoraSalidaEstimada.getText().equals("")
                 || txtHoraLlegadaEstimada.getText().equals("") || txtCapacidad.getText().equals("")){
@@ -81,18 +92,14 @@ public class AdminAerolineaController {
         }
         //Obtener datos ingresados por el usuario
         String codigoVuelo = this.txtCodigoVuelo.getText();
-        String codigoAeropuertoOrigen = this.txtAeropuertoOrigen.getText();
-        String codigoAeropuertoDestino = this.txtAeropuertoDestino.getText();
-        Aeropuerto aeropuertoOrigen = aeropuertoService.obtenerUnoPorCodigo(codigoAeropuertoOrigen);
-        if (aeropuertoOrigen == null){
-            showAlert("Error", "El aeropuerto de origen no existe.");
+        Aeropuerto aeropuertoOrigen = this.choiceBoxAeropuertoOrigen.getValue();
+        Aeropuerto aeropuertoDestino = this.choiceBoxAeropuertoDestino.getValue();
+
+        if (aeropuertoOrigen == null || aeropuertoDestino == null){
+            showAlert("Error", "Debe seleccionar un aeropuerto de origen y uno de destino.");
             return;
         }
-        Aeropuerto aeropuertoDestino = aeropuertoService.obtenerUnoPorCodigo(codigoAeropuertoDestino);
-        if (aeropuertoDestino == null){
-            showAlert("Error", "El aeropuerto de destino no existe.");
-            return;
-        }else if(aeropuertoDestino == aeropuertoOrigen){
+         if(aeropuertoDestino == aeropuertoOrigen){
             showAlert("Error", "El aeropuerto de destino no puede ser el mismo que el de origen.");
             return;
         }
@@ -139,8 +146,8 @@ public class AdminAerolineaController {
     }
     private void limpiarCampos(){
         txtCodigoVuelo.setText("");
-        txtAeropuertoOrigen.setText("");
-        txtAeropuertoDestino.setText("");
+        choiceBoxAeropuertoOrigen.setValue(null);
+        choiceBoxAeropuertoDestino.setValue(null);
         txtFechaSalida.setText("");
         txtFechaLlegada.setText("");
         txtAvion.setText("");

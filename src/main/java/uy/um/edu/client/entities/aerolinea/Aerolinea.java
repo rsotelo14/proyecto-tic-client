@@ -15,10 +15,12 @@ public class Aerolinea {
 
     private Long id;
 
-    public Aerolinea(String nombre) {
-        this.nombre = nombre;
-    }
+    private String codigoIATA;
+
+    private String codigoICAO;
+
     private String nombre;
+    private String paisDeOrigen;
 
     public String getNombre() {
         return nombre;
@@ -38,6 +40,26 @@ public class Aerolinea {
     }
     @JsonIgnore
     private List<UsuarioAerolinea> usuarios=new ArrayList<>();
+
+    public String getCodigoIATA() {
+        return codigoIATA;
+    }
+
+    public void setCodigoIATA(String codigoIATA) {
+        this.codigoIATA = codigoIATA;
+    }
+
+    public String getCodigoICAO() {
+        return codigoICAO;
+    }
+
+    public void setCodigoICAO(String codigoICAO) {
+        this.codigoICAO = codigoICAO;
+    }
+
+    public void setPaisDeOrigen(String paisDeOrigen) {
+        this.paisDeOrigen = paisDeOrigen;
+    }
 
 //    public String getNombre() {
 //        return nombre;

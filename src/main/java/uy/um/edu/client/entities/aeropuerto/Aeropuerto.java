@@ -164,5 +164,10 @@ public class Aeropuerto {
         this.direccion = direccion;
         this.telefono = telefono;
     }
+
+    @Override
+    public String toString() {
+        return this.getCodigo();
+    }
 }
 

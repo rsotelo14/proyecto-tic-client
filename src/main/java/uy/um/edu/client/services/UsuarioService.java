@@ -3,6 +3,8 @@ package uy.um.edu.client.services;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 import uy.um.edu.client.config.RestTemplateConfig;
 import uy.um.edu.client.entities.Usuario;
@@ -34,28 +36,42 @@ public class UsuarioService {
     }
 
     public void agregarUsuario(Usuario usuario) throws InvalidInformation, EntidadYaExiste {
-        ResponseEntity<?> response = restTemplate.postForEntity(baseURL +"/usuarios", usuario, String.class);
-        if (response.getStatusCode() == HttpStatus.CREATED){
+        try {
+            ResponseEntity<String> response = restTemplate.postForEntity(baseURL +"/usuarios", usuario, String.class);
             return;
-        } else if (response.getStatusCode() == HttpStatus.BAD_REQUEST) {
+        }catch (HttpClientErrorException.Conflict e){
+            throw new EntidadYaExiste("Usuario ya existe");
+        }
+        catch (HttpClientErrorException.BadRequest e){
             throw new InvalidInformation("Informacion invalida");
-        } else if (response.getStatusCode() == HttpStatus.CONFLICT) {
-            throw new EntidadYaExiste("El usuario ya existe");
-        } else if (response.getStatusCode() == HttpStatus.INTERNAL_SERVER_ERROR) {
+        }
+        catch (Exception e){
             throw new RuntimeException();
         }
+
     }
 
     public Usuario obtenerUnoPorCorreo(String correoAeropuerto) {
-        ResponseEntity<Usuario> response = restTemplate.getForEntity(baseURL + "/usuarios/" + correoAeropuerto, Usuario.class);
-        if (response.getStatusCode() == HttpStatus.OK) {
-            return response.getBody();
-        } else if (response.getStatusCode() == HttpStatus.NOT_FOUND) {
+        try {
+            ResponseEntity<Usuario> response = restTemplate.getForEntity(baseURL + "/usuarios/" + correoAeropuerto, Usuario.class);
+
+            if (response.getStatusCode() == HttpStatus.OK) {
+                return response.getBody();
+            } else if (response.getStatusCode() == HttpStatus.NOT_FOUND) {
+                return null;
+            } else {
+                throw new RuntimeException("Unexpected response status: " + response.getStatusCode());
+            }
+
+        } catch (HttpClientErrorException.NotFound e) {
             return null;
-        } else if (response.getStatusCode() == HttpStatus.INTERNAL_SERVER_ERROR) {
-            throw new RuntimeException();
+        } catch (HttpClientErrorException e) {
+            // Puedes manejar otros errores 4xx aquí si lo necesitas
+            throw new RuntimeException("Client error: " + e.getStatusCode());
+        } catch (HttpServerErrorException e) {
+            // Errores del servidor (5xx)
+            throw new RuntimeException("Server error: " + e.getStatusCode());
         }
-        return null;
 
     }
 
