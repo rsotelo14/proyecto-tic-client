@@ -75,7 +75,9 @@ public class AeropuertoService {
     public List<Aerolinea> obtenerAerolineasDisponibles(Aeropuerto aeropuerto) {
         ResponseEntity<Aerolinea[]> response = restTemplate.getForEntity(baseURL + "/aeropuertos/" + aeropuerto.getCodigo() + "/aerolineas-disponibles", Aerolinea[].class);
         if (response.getStatusCode().is2xxSuccessful()) {
+            System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
             return List.of(response.getBody());
+
         } else {
             throw new RuntimeException();
         }
