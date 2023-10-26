@@ -104,7 +104,7 @@
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <ListView fx:id="aeropuertosAsociadosListView" layoutX="196.0" layoutY="86.0" prefHeight="200.0" prefWidth="200.0" />
-                        <Button layoutX="204.0" layoutY="302.0" mnemonicParsing="false" text="Mostrar Aeropuertos Asociados" />
+                        <Button layoutX="204.0" layoutY="302.0" mnemonicParsing="false" onAction="#mostrarAeropuertosAsociadosAction" text="Mostrar Aeropuertos Asociados" />
                      </children>
                   </AnchorPane>
               </content>
