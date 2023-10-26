@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import uy.um.edu.client.entities.aerolinea.AdminAerolinea;
 import uy.um.edu.client.entities.aerolinea.Aerolinea;
 import uy.um.edu.client.entities.aeropuerto.Aeropuerto;
+import uy.um.edu.client.entities.vuelos.Avion;
 import uy.um.edu.client.entities.vuelos.EstadoVuelo;
 import uy.um.edu.client.entities.vuelos.Vuelo;
 import uy.um.edu.client.exceptions.EntidadYaExiste;
@@ -22,6 +23,7 @@ import uy.um.edu.client.services.AvionService;
 import uy.um.edu.client.services.UsuarioAerolineaService;
 import uy.um.edu.client.services.VueloService;
 
+import javax.swing.*;
 import java.util.List;
 
 
@@ -59,6 +61,18 @@ public class AdminAerolineaController {
     private Label nombreAdminAerolinea;
     @FXML
     private Label nombreAerolinea;
+    @FXML
+    private TextField txtNombreAvion;
+    @FXML
+    private TextField txtCapacidadBultoAvion;
+    @FXML
+    private TextField txtCapacidadAsientosAvion;
+    @FXML
+    private TextField txtTipoAvion;
+    @FXML
+    private TextField txtCodigoAvion;
+    @FXML
+
 
     private AdminAerolinea adminAerolinea;
     private Aerolinea aerolinea;
@@ -145,6 +159,44 @@ public class AdminAerolineaController {
 
 
     }
+    @FXML
+    void guardarAvion(ActionEvent event){
+        if (txtCodigoAvion.getText().equals("") || txtNombreAvion.getText().equals("") || txtCapacidadBultoAvion.getText().equals("")
+                || txtCapacidadAsientosAvion.getText().equals("") || txtTipoAvion.getText().equals("")){
+            showAlert( "Datos faltantes!",
+                    "No se ingresaron los datos necesarios para completar la creación del avion.");
+            return;
+        }
+        //Obtener datos ingresados por el usuario
+        String codigoAvion = this.txtCodigoAvion.getText();
+        String nombreAvion = this.txtNombreAvion.getText();
+        String capacidadBultoAvion = this.txtCapacidadBultoAvion.getText();
+        String capacidadAsientosAvion = this.txtCapacidadAsientosAvion.getText();
+        String tipoAvion = this.txtTipoAvion.getText();
+        //crear la instancia avion
+        Avion avion = new Avion();
+        avion.setCodigo(codigoAvion);
+        avion.setAerolinea(aerolinea);
+        avion.setNombre(nombreAvion);
+        avion.setCapacidad(Long.valueOf(capacidadBultoAvion));
+        avion.setCapacidad(Long.valueOf(capacidadAsientosAvion));
+        avion.setTipoAvion(tipoAvion);
+        //guardar en la base de datos
+        try{
+            avionService.agregarAvion(avion);
+            showAlert("Avion creado", "El avion se ha creado correctamente.");
+        } catch (EntidadYaExiste e) {
+            showAlert(
+                    "Avion ya existe !",
+                    "Se encontro un avion con el mismo código");
+            return;
+        }
+
+
+
+
+
+    }
     private void limpiarCampos(){
         txtCodigoVuelo.setText("");
         choiceBoxAeropuertoOrigen.setValue(null);
@@ -173,4 +225,5 @@ public class AdminAerolineaController {
     public void setAerolinea(Aerolinea aerolinea) {
         this.aerolinea = aerolinea;
     }
+    private void
 }
