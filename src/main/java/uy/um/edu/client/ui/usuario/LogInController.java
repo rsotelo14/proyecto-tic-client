@@ -4,11 +4,16 @@ package uy.um.edu.client.ui.usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.ImageCursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +25,7 @@ import uy.um.edu.client.entities.aeropuerto.AdminAeropuerto;
 import uy.um.edu.client.entities.aeropuerto.MaleteroAeropuerto;
 import uy.um.edu.client.services.AeropuertoService;
 import uy.um.edu.client.services.UsuarioService;
+
 
 
 import java.io.IOException;
@@ -38,10 +44,28 @@ public class LogInController {
     private TextField txtCorreo;
 
     @FXML
-    private TextField txtContrasena;
+    private PasswordField txtContrasena;
+    @FXML
+    private TextField txtContrasenaVisible;
+
+    @FXML
+    public ImageView openedEye;
+
+    @FXML
+    private ImageView closedEye;
+
+    private String contrasena;
 
     @Autowired
     private UsuarioService usuarioManager;
+
+    @FXML
+    public void initialize() {
+        txtContrasenaVisible.setVisible(false);
+        openedEye.setVisible(false);
+        
+
+    }
 
     @FXML
     void close(ActionEvent actionEvent) {
@@ -222,4 +246,28 @@ public class LogInController {
     }
 
 
+    public void Close_Eye_ClickOnAction(MouseEvent mouseEvent) {
+        txtContrasenaVisible.setVisible(true);
+        openedEye.setVisible(true);
+        closedEye.setVisible(false);
+        txtContrasena.setVisible(false);
+
+    }
+
+    public void HidePasswordOnAction(KeyEvent keyEvent) {
+        contrasena=txtContrasena.getText();
+        txtContrasenaVisible.setText(contrasena);
+    }
+
+    public void ShowPasswordOnAction(KeyEvent keyEvent) {
+        contrasena=txtContrasenaVisible.getText();
+        txtContrasena.setText(contrasena);
+    }
+
+    public void Open_Eye_ClickOnAction(MouseEvent mouseEvent) {
+        txtContrasenaVisible.setVisible(false);
+        openedEye.setVisible(false);
+        closedEye.setVisible(true);
+        txtContrasena.setVisible(true);
+    }
 }
