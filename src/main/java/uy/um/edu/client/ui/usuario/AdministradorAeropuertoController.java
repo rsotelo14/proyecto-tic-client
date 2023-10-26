@@ -107,6 +107,9 @@ public class AdministradorAeropuertoController {
 
     @FXML
     private ListView<Aerolinea> aerolineasDisponiblesListView;
+
+    @FXML
+    private ListView<Aerolinea> aerolineasAsociadasListView;
     private AdminAeropuerto adminAeropuerto;
     private Aeropuerto aeropuerto;
 
@@ -238,6 +241,9 @@ public class AdministradorAeropuertoController {
         ObservableList<Aerolinea> aerolineasObservable = FXCollections.observableArrayList();
         List<Aerolinea> aerolineasDisponibles = aeropuertoService.obtenerAerolineasDisponibles(aeropuerto);
         aerolineasObservable.addAll(aerolineasDisponibles);
+        if (aerolineasDisponibles.size() == 0){
+            showAlert("No hay aerolineas disponibles", "No hay aerolineas disponibles para registrar");
+        }
         aerolineasDisponiblesListView.setCellFactory(param -> new ListCell<Aerolinea>() {
             @Override
             protected void updateItem(Aerolinea item, boolean empty) {
@@ -267,8 +273,20 @@ public class AdministradorAeropuertoController {
                 }
             }
         });
+        aerolineasDisponiblesListView.setItems(aerolineasObservable);
 
 
+    }
+    @FXML
+    public void mostrarAerolineasAsociadasAction(ActionEvent event){
+        ObservableList<Aerolinea> aerolineasObservable = FXCollections.observableArrayList();
+        List<Aerolinea> aerolineasAsociadas = aeropuertoService.obtenerAerolineasAsociadas(aeropuerto);
+        aerolineasObservable.addAll(aerolineasAsociadas);
+        if (aerolineasAsociadas.size() == 0){
+            showAlert("No hay aerolineas asociadas", "No hay aerolineas asociadas a este aeropuerto");
+        }
+
+        aerolineasAsociadasListView.setItems(aerolineasObservable);
     }
 
     @FXML

@@ -42,13 +42,11 @@ public class AeropuertoService {
         try {
             ResponseEntity<String> response = restTemplate.postForEntity(baseURL + "/aeropuertos", aeropuerto, String.class);
             return;
-        }catch (HttpClientErrorException.Conflict e){
+        } catch (HttpClientErrorException.Conflict e) {
             throw new EntidadYaExiste("Aeropuerto ya existe");
-        }
-        catch (HttpClientErrorException.BadRequest e){
+        } catch (HttpClientErrorException.BadRequest e) {
             throw new InvalidInformation("Informacion invalida");
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException();
         }
 
@@ -75,7 +73,15 @@ public class AeropuertoService {
     public List<Aerolinea> obtenerAerolineasDisponibles(Aeropuerto aeropuerto) {
         ResponseEntity<Aerolinea[]> response = restTemplate.getForEntity(baseURL + "/aeropuertos/" + aeropuerto.getCodigo() + "/aerolineas-disponibles", Aerolinea[].class);
         if (response.getStatusCode().is2xxSuccessful()) {
-            System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            return List.of(response.getBody());
+
+        } else {
+            throw new RuntimeException();
+        }
+    }
+    public List<Aerolinea> obtenerAerolineasAsociadas(Aeropuerto aeropuerto) {
+        ResponseEntity<Aerolinea[]> response = restTemplate.getForEntity(baseURL + "/aeropuertos/" + aeropuerto.getCodigo() + "/aerolineas-asociadas", Aerolinea[].class);
+        if (response.getStatusCode().is2xxSuccessful()) {
             return List.of(response.getBody());
 
         } else {
@@ -83,20 +89,25 @@ public class AeropuertoService {
         }
     }
 
+
     public void asociarAerolinea(Aeropuerto aeropuerto, Aerolinea aerolinea) throws InvalidInformation {
-        try{
-            ResponseEntity<String> response = restTemplate.postForEntity(baseURL + "/aeropuertos/" + aeropuerto.getCodigo() + "/asociar-aerolinea/" + aerolinea.getCodigoIATA(),aerolinea, String.class);
+        try {
+            ResponseEntity<String> response = restTemplate.postForEntity(baseURL + "/aeropuertos/" + aeropuerto.getCodigo() + "/asociar-aerolinea/" + aerolinea.getCodigoIATA(), aerolinea, String.class);
             if (response.getStatusCode() == HttpStatus.OK) {
+
                 return;
             } else if (response.getStatusCode() == HttpStatus.BAD_REQUEST) {
+
                 throw new InvalidInformation("Información inválida");
             } else {
+
                 throw new RuntimeException();
             }
-        }catch (HttpClientErrorException.BadRequest e){
+        } catch (HttpClientErrorException.BadRequest e) {
+
             throw new InvalidInformation("Información inválida");
-        }
-        catch (Exception e){
+        } catch (Exception e) {
+
             System.out.println(e.getMessage());
             throw new RuntimeException();
         }
