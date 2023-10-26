@@ -109,7 +109,7 @@ public class AdministradorAeropuertoController {
     private ListView<Aerolinea> aerolineasDisponiblesListView;
 
     @FXML
-    private ListView<Aerolinea> aerolineasAsociadasListView;
+    private ListView<String> aerolineasAsociadasListView;
     private AdminAeropuerto adminAeropuerto;
     private Aeropuerto aeropuerto;
 
@@ -279,9 +279,11 @@ public class AdministradorAeropuertoController {
     }
     @FXML
     public void mostrarAerolineasAsociadasAction(ActionEvent event){
-        ObservableList<Aerolinea> aerolineasObservable = FXCollections.observableArrayList();
+        ObservableList<String> aerolineasObservable = FXCollections.observableArrayList();
         List<Aerolinea> aerolineasAsociadas = aeropuertoService.obtenerAerolineasAsociadas(aeropuerto);
-        aerolineasObservable.addAll(aerolineasAsociadas);
+
+        for (Aerolinea aerolinea : aerolineasAsociadas)
+            aerolineasObservable.add(aerolinea.getNombre());
         if (aerolineasAsociadas.size() == 0){
             showAlert("No hay aerolineas asociadas", "No hay aerolineas asociadas a este aeropuerto");
         }
