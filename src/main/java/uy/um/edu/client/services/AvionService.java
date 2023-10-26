@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
+import uy.um.edu.client.entities.aerolinea.Aerolinea;
 import uy.um.edu.client.entities.vuelos.Avion;
 import uy.um.edu.client.exceptions.EntidadYaExiste;
 import uy.um.edu.client.exceptions.InvalidInformation;
@@ -25,6 +26,14 @@ public class AvionService {
             return;
         } else {
             throw new EntidadYaExiste("Avion ya existe");
+        }
+    }
+    public List<Avion> obtenerAvionesAerolinea(Aerolinea aerolinea) {
+        ResponseEntity<Avion[]> response = restTemplate.getForEntity(baseURL + "/aerolineas/" + aerolinea.getCodigoIATA() + "/aviones", Avion[].class);
+        if (response.getStatusCode().is2xxSuccessful()) {
+            return List.of(response.getBody());
+        } else {
+            throw new RuntimeException();
         }
     }
 }
