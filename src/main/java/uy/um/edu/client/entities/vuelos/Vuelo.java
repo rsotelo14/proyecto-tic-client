@@ -13,9 +13,10 @@ public class Vuelo {
 
     private Aeropuerto aeropuertoOrigen;
     private Aeropuerto aeropuertoDestino;
-    private PuertaAeropuerto puertaOrigen;
-
-    private PuertaAeropuerto puertaDestino;
+    private ReservaPista reservaPistaOrigen;
+    private ReservaPista reservaPistaDestino;
+    private ReservaPuerta reservaPuertaOrigen;
+    private ReservaPuerta reservaPuertaDestino;
 
     private LocalDate fechaSalida;
     private LocalDate fechaLlegada;
@@ -97,22 +98,6 @@ public class Vuelo {
         this.aeropuertoDestino = aeropuertoDestino;
     }
 
-    public PuertaAeropuerto getPuertaOrigen() {
-        return puertaOrigen;
-    }
-
-    public void setPuertaOrigen(PuertaAeropuerto puertaOrigen) {
-        this.puertaOrigen = puertaOrigen;
-    }
-
-    public PuertaAeropuerto getPuertaDestino() {
-        return puertaDestino;
-    }
-
-    public void setPuertaDestino(PuertaAeropuerto puertaDestino) {
-        this.puertaDestino = puertaDestino;
-    }
-
     public LocalDate getFechaSalida() {
         return fechaSalida;
     }
@@ -192,5 +177,37 @@ public class Vuelo {
 
     public void setEstado(EstadoVuelo estado) {
         this.estado = estado;
+    }
+
+    public ReservaPista getReservaPistaOrigen() {
+        return reservaPistaOrigen;
+    }
+
+    public void setReservaPistaOrigen(ReservaPista reservaPistaOrigen) {
+        this.reservaPistaOrigen = reservaPistaOrigen;
+    }
+
+    public ReservaPista getReservaPistaDestino() {
+        return reservaPistaDestino;
+    }
+
+    public void setReservaPistaDestino(ReservaPista reservaPistaDestino) {
+        this.reservaPistaDestino = reservaPistaDestino;
+    }
+
+    public ReservaPuerta getReservaPuertaOrigen() {
+        return reservaPuertaOrigen;
+    }
+
+    public void setReservaPuertaOrigen(ReservaPuerta reservaPuertaOrigen) {
+        this.reservaPuertaOrigen = reservaPuertaOrigen;
+    }
+
+    public ReservaPuerta getReservaPuertaDestino() {
+        return reservaPuertaDestino;
+    }
+
+    public void setReservaPuertaDestino(ReservaPuerta reservaPuertaDestino) {
+        this.reservaPuertaDestino = reservaPuertaDestino;
     }
 }

@@ -8,6 +8,8 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import uy.um.edu.client.entities.aerolinea.Aerolinea;
 import uy.um.edu.client.entities.aeropuerto.Aeropuerto;
+import uy.um.edu.client.entities.aeropuerto.PistaAeropuerto;
+import uy.um.edu.client.entities.aeropuerto.PuertaAeropuerto;
 import uy.um.edu.client.entities.aeropuerto.UsuarioAeropuerto;
 import uy.um.edu.client.entities.vuelos.Vuelo;
 import uy.um.edu.client.exceptions.EntidadYaExiste;
@@ -74,6 +76,7 @@ public class AeropuertoService {
 
     public List<Aerolinea> obtenerAerolineasDisponibles(Aeropuerto aeropuerto) {
         ResponseEntity<Aerolinea[]> response = restTemplate.getForEntity(baseURL + "/aeropuertos/" + aeropuerto.getCodigo() + "/aerolineas-disponibles", Aerolinea[].class);
+        System.out.println(response.getBody());
         if (response.getStatusCode().is2xxSuccessful()) {
             return List.of(response.getBody());
         } else {
@@ -96,6 +99,24 @@ public class AeropuertoService {
         }
         catch (Exception e){
             System.out.println(e.getMessage());
+            throw new RuntimeException();
+        }
+    }
+
+    public List<PuertaAeropuerto> obtenerPuertas(Aeropuerto aeropuerto) {
+        ResponseEntity<PuertaAeropuerto[]> response = restTemplate.getForEntity(baseURL + "/aeropuertos/" + aeropuerto.getCodigo() + "/puertas", PuertaAeropuerto[].class);
+        if (response.getStatusCode().is2xxSuccessful()) {
+            return List.of(response.getBody());
+        } else {
+            throw new RuntimeException();
+        }
+    }
+
+    public List<PistaAeropuerto> obtenerPistas(Aeropuerto aeropuerto) {
+        ResponseEntity<PistaAeropuerto[]> response = restTemplate.getForEntity(baseURL + "/aeropuertos/" + aeropuerto.getCodigo() + "/pistas", PistaAeropuerto[].class);
+        if (response.getStatusCode().is2xxSuccessful()) {
+            return List.of(response.getBody());
+        } else {
             throw new RuntimeException();
         }
     }

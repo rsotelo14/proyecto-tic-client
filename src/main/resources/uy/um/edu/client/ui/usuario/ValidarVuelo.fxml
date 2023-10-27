@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="24.0" layoutY="27.0" prefHeight="35.0" prefWidth="153.0" text="Validar Vuelo:">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="18.0" layoutY="73.0" prefHeight="35.0" prefWidth="94.0" text="Aerolinea:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="16.0" layoutY="213.0" text="Asignar Puerta:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="puertaChoiceBox" layoutX="152.0" layoutY="215.0" prefHeight="26.0" prefWidth="108.0" />
+      <Label layoutX="14.0" layoutY="258.0" text="Hora inicio puerta:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="332.0" layoutY="214.0" text="Asignar Pista:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="pistaChoiceBox" layoutX="436.0" layoutY="214.0" prefHeight="26.0" prefWidth="108.0" />
+      <ChoiceBox fx:id="horaInicioPuertaHorasChoiceBox" layoutX="152.0" layoutY="261.0" prefHeight="26.0" prefWidth="51.0" />
+      <Label layoutX="14.0" layoutY="303.0" text="Cantidad horas:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="cantidadHorasPuertaChoiceBox" layoutX="155.0" layoutY="302.0" prefHeight="26.0" prefWidth="93.0" />
+      <Label layoutX="332.0" layoutY="261.0" text="Hora Inicio:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="horaInicioPistaHorasChoiceBox" layoutX="426.0" layoutY="260.0" prefHeight="26.0" prefWidth="51.0" />
+      <Label layoutX="208.0" layoutY="262.0" text=":">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="horaInicioPuertaMinutosChoiceBox" layoutX="217.0" layoutY="261.0" prefHeight="26.0" prefWidth="51.0" />
+      <Label layoutX="480.0" layoutY="261.0" text=":">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="horaInicioPistaMinutosChoiceBox" layoutX="489.0" layoutY="260.0" prefHeight="26.0" prefWidth="51.0" />
+      <Label layoutX="332.0" layoutY="301.0" text="Intervalo: 30 mins">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Button fx:id="cancelarButton" layoutX="397.0" layoutY="349.0" mnemonicParsing="false" onAction="#cancelarAction" prefHeight="26.0" prefWidth="65.0" text="Cancelar" />
+      <Button fx:id="validarButton" layoutX="487.0" layoutY="349.0" mnemonicParsing="false" onAction="#validarVueloAction" prefHeight="26.0" prefWidth="58.0" text="Validar" />
+      <Label fx:id="codigoAerolineaLabel" layoutX="123.0" layoutY="73.0" prefHeight="35.0" prefWidth="94.0" text="Codigo Aerolinea">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="18.0" layoutY="108.0" prefHeight="35.0" prefWidth="130.0" text="Codigo Vuelo:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="codigoVueloLabel" layoutX="130.0" layoutY="113.0" text="Codigo vuelo">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="19.0" layoutY="146.0" text="Aeropuerto origen:">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label fx:id="codigoAeropuertoOrigenLabel" layoutX="165.0" layoutY="147.0" prefHeight="26.0" prefWidth="107.0" text="Codigo Aeropuerto Origen">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="19.0" layoutY="182.0" text="Aeropuerto destino:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="codigoAeropuertoDestinoLabel" layoutX="164.0" layoutY="182.0" prefHeight="26.0" prefWidth="94.0" text="Codigo AeropuertoDestino">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="315.0" layoutY="79.0" text="Fecha salida:">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label layoutX="314.0" layoutY="105.0" text="Fecha llegada:">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label layoutX="313.0" layoutY="138.0" text="Hora salida:">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label layoutX="313.0" layoutY="169.0" text="Hora llegada:">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label fx:id="fechaSalidaLabel" layoutX="449.0" layoutY="83.0" text="FechaSalida">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label fx:id="fechaLlegadaLabel" layoutX="447.0" layoutY="109.0" text="FechaLlegada">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label fx:id="horaSalidaLabel" layoutX="447.0" layoutY="142.0" text="HoraSalida">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label fx:id="horaLlegadaLabel" layoutX="447.0" layoutY="173.0" text="HoraLlegada">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+   </children>
+</AnchorPane>
