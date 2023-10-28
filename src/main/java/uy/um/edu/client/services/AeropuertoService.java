@@ -8,6 +8,8 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import uy.um.edu.client.entities.aerolinea.Aerolinea;
 import uy.um.edu.client.entities.aeropuerto.Aeropuerto;
+import uy.um.edu.client.entities.aeropuerto.PistaAeropuerto;
+import uy.um.edu.client.entities.aeropuerto.PuertaAeropuerto;
 import uy.um.edu.client.entities.aeropuerto.UsuarioAeropuerto;
 import uy.um.edu.client.entities.vuelos.Vuelo;
 import uy.um.edu.client.exceptions.EntidadYaExiste;
@@ -42,13 +44,11 @@ public class AeropuertoService {
         try {
             ResponseEntity<String> response = restTemplate.postForEntity(baseURL + "/aeropuertos", aeropuerto, String.class);
             return;
-        }catch (HttpClientErrorException.Conflict e){
+        } catch (HttpClientErrorException.Conflict e) {
             throw new EntidadYaExiste("Aeropuerto ya existe");
-        }
-        catch (HttpClientErrorException.BadRequest e){
+        } catch (HttpClientErrorException.BadRequest e) {
             throw new InvalidInformation("Informacion invalida");
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException();
         }
 
@@ -74,6 +74,50 @@ public class AeropuertoService {
 
     public List<Aerolinea> obtenerAerolineasDisponibles(Aeropuerto aeropuerto) {
         ResponseEntity<Aerolinea[]> response = restTemplate.getForEntity(baseURL + "/aeropuertos/" + aeropuerto.getCodigo() + "/aerolineas-disponibles", Aerolinea[].class);
+        System.out.println(response.getBody());
+        if (response.getStatusCode().is2xxSuccessful()) {
+            return List.of(response.getBody());
+
+        } else {
+            throw new RuntimeException();
+        }
+    }
+    public List<Aerolinea> obtenerAerolineasAsociadas(Aeropuerto aeropuerto) {
+        ResponseEntity<Aerolinea[]> response = restTemplate.getForEntity(baseURL + "/aeropuertos/" + aeropuerto.getCodigo() + "/aerolineas-asociadas", Aerolinea[].class);
+        if (response.getStatusCode().is2xxSuccessful()) {
+            return List.of(response.getBody());
+
+        } else {
+            throw new RuntimeException();
+        }
+    }
+
+
+    public void asociarAerolinea(Aeropuerto aeropuerto, Aerolinea aerolinea) throws InvalidInformation {
+        try {
+            ResponseEntity<String> response = restTemplate.postForEntity(baseURL + "/aeropuertos/" + aeropuerto.getCodigo() + "/asociar-aerolinea/" + aerolinea.getCodigoIATA(), aerolinea, String.class);
+            if (response.getStatusCode() == HttpStatus.OK) {
+
+                return;
+            } else if (response.getStatusCode() == HttpStatus.BAD_REQUEST) {
+
+                throw new InvalidInformation("Información inválida");
+            } else {
+
+                throw new RuntimeException();
+            }
+        } catch (HttpClientErrorException.BadRequest e) {
+
+            throw new InvalidInformation("Información inválida");
+        } catch (Exception e) {
+
+            System.out.println(e.getMessage());
+            throw new RuntimeException();
+        }
+    }
+
+    public List<PuertaAeropuerto> obtenerPuertas(Aeropuerto aeropuerto) {
+        ResponseEntity<PuertaAeropuerto[]> response = restTemplate.getForEntity(baseURL + "/aeropuertos/" + aeropuerto.getCodigo() + "/puertas", PuertaAeropuerto[].class);
         if (response.getStatusCode().is2xxSuccessful()) {
             return List.of(response.getBody());
         } else {
@@ -81,21 +125,11 @@ public class AeropuertoService {
         }
     }
 
-    public void asociarAerolinea(Aeropuerto aeropuerto, Aerolinea aerolinea) throws InvalidInformation {
-        try{
-            ResponseEntity<String> response = restTemplate.postForEntity(baseURL + "/aeropuertos/" + aeropuerto.getCodigo() + "/asociar-aerolinea/" + aerolinea.getCodigoIATA(),aerolinea, String.class);
-            if (response.getStatusCode() == HttpStatus.OK) {
-                return;
-            } else if (response.getStatusCode() == HttpStatus.BAD_REQUEST) {
-                throw new InvalidInformation("Información inválida");
-            } else {
-                throw new RuntimeException();
-            }
-        }catch (HttpClientErrorException.BadRequest e){
-            throw new InvalidInformation("Información inválida");
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage());
+    public List<PistaAeropuerto> obtenerPistas(Aeropuerto aeropuerto) {
+        ResponseEntity<PistaAeropuerto[]> response = restTemplate.getForEntity(baseURL + "/aeropuertos/" + aeropuerto.getCodigo() + "/pistas", PistaAeropuerto[].class);
+        if (response.getStatusCode().is2xxSuccessful()) {
+            return List.of(response.getBody());
+        } else {
             throw new RuntimeException();
         }
     }

@@ -1,12 +1,11 @@
 package uy.um.edu.client.ui.usuario;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +21,8 @@ import uy.um.edu.client.exceptions.InvalidInformation;
 import uy.um.edu.client.services.*;
 
 import javax.swing.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -39,23 +40,37 @@ public class AdminAerolineaController {
     private AvionService avionService;
     @Autowired
     private VueloService vueloService;
+    @Autowired
+    private AerolineaService aerolineaService;
     @FXML
     private TextField txtCodigoVuelo;
     @FXML
     private ChoiceBox<Avion> choiceBoxAvion;
 
+
     @FXML
     private ChoiceBox<Aeropuerto> choiceBoxAeropuertoOrigen;
     @FXML
     private ChoiceBox<Aeropuerto> choiceBoxAeropuertoDestino;
+
     @FXML
-    private TextField txtFechaSalida;
+    private TextField txtAvion;
+
     @FXML
-    private TextField txtFechaLlegada;
+    private DatePicker fechaSalidaDate;
+
     @FXML
-    private TextField txtHoraSalidaEstimada;
+    private DatePicker fechaLlegadaDate;
+
     @FXML
-    private TextField txtHoraLlegadaEstimada;
+    private ChoiceBox<Integer> horaSalidaHoras;
+
+    @FXML
+    private ChoiceBox<Integer> horaSalidaMinutos;
+    @FXML
+    private ChoiceBox<Integer> horaLlegadaHoras;
+    @FXML
+    private ChoiceBox<Integer> horaLlegadaMinutos;
     @FXML
     private TextField txtCapacidad;
     @FXML
@@ -63,6 +78,7 @@ public class AdminAerolineaController {
     @FXML
     private Label nombreAerolinea;
     @FXML
+
     private TextField txtNombreAvion;
     @FXML
     private TextField txtCapacidadBultoAvion;
@@ -72,6 +88,9 @@ public class AdminAerolineaController {
     private TextField txtTipoAvion;
     @FXML
     private TextField txtCodigoAvion;
+
+    private ListView<String> aeropuertosAsociadosListView;
+
 
     @FXML
     private TextField txtCorreoPasajero;
@@ -99,8 +118,26 @@ public class AdminAerolineaController {
         choiceBoxAeropuertoOrigen.getItems().add(null);
         choiceBoxAeropuertoDestino.getItems().addAll(aeropuertosAsociados);
         choiceBoxAeropuertoDestino.getItems().add(null);
+
         choiceBoxAvion.getItems().addAll(avionesAsociados);
         choiceBoxAvion.getItems().add(null);
+
+        ObservableList<Integer> horas = FXCollections.observableArrayList();
+        horas.add(null);
+        for (int i = 0; i < 24; i++) {
+            horas.add(i);
+        }
+        horaSalidaHoras.setItems(horas);
+        horaLlegadaHoras.setItems(horas);
+
+        ObservableList<Integer> minutos = FXCollections.observableArrayList();
+        minutos.add(null);
+        for (int i = 0; i < 60; i+= 5) {
+            minutos.add(i);
+        }
+        horaLlegadaMinutos.setItems(minutos);
+        horaSalidaMinutos.setItems(minutos);
+
     }
     @FXML
     void close(ActionEvent actionEvent) {
@@ -112,9 +149,12 @@ public class AdminAerolineaController {
     @FXML
     void guardarVuelo(ActionEvent event){
         if (txtCodigoVuelo.getText().equals("") || choiceBoxAeropuertoOrigen.getValue().equals(null) || choiceBoxAeropuertoDestino.getValue().equals(null)
-                || txtFechaSalida.getText().equals("") || txtFechaLlegada.getText().equals("")
-                || txtHoraSalidaEstimada.getText().equals("") || choiceBoxAvion.getValue().equals(null)
-                || txtHoraLlegadaEstimada.getText().equals("") || txtCapacidad.getText().equals("")){
+
+                || fechaSalidaDate.getValue().equals(null) || fechaLlegadaDate.getValue().equals(null)
+                 || txtAvion.getText().equals("") || txtCapacidad.getText().equals("")
+                || horaSalidaHoras.getValue().equals(null) || horaSalidaMinutos.getValue().equals(null)
+                || horaLlegadaHoras.getValue().equals(null) || horaLlegadaMinutos.getValue().equals(null)
+        ){
             showAlert( "Datos faltantes!",
                     "No se ingresaron los datos necesarios para completar la creación del vuelo.");
             return;
@@ -132,11 +172,18 @@ public class AdminAerolineaController {
             showAlert("Error", "El aeropuerto de destino no puede ser el mismo que el de origen.");
             return;
         }
-        String fechaSalida = this.txtFechaSalida.getText();
-        String fechaLlegada = this.txtFechaLlegada.getText();
         Avion avion = this.choiceBoxAvion.getValue();
-        String horaSalidaEstimada = this.txtHoraSalidaEstimada.getText();
-        String horaLlegadaEstimada = this.txtHoraLlegadaEstimada.getText();
+        LocalDate fechaSalida = fechaSalidaDate.getValue();
+        LocalDate fechaLlegada = fechaLlegadaDate.getValue();
+        //String codigoAvion = this.txtAvion.getText();
+        //Avion avion = avionMgr.obtenerUnoPorCodigo(codigoAvion);
+
+        Integer horaSalidaHoras = this.horaSalidaHoras.getValue();
+        Integer horaSalidaMinutos = this.horaSalidaMinutos.getValue();
+        Integer horaLlegadaHoras = this.horaLlegadaHoras.getValue();
+        Integer horaLlegadaMinutos = this.horaLlegadaMinutos.getValue();
+        LocalTime horaSalida = LocalTime.of(horaSalidaHoras, horaSalidaMinutos);
+        LocalTime horaLlegada = LocalTime.of(horaLlegadaHoras, horaLlegadaMinutos);
         String capacidad = this.txtCapacidad.getText();
         //crear la instancia vuelo
         Vuelo vuelo = new Vuelo();
@@ -146,8 +193,8 @@ public class AdminAerolineaController {
         vuelo.setAeropuertoDestino(aeropuertoDestino);
         vuelo.setFechaSalida(fechaSalida);
         vuelo.setFechaLlegada(fechaLlegada);
-        vuelo.setHoraSalidaEstimada(horaSalidaEstimada);
-        vuelo.setHoraLlegadaEstimada(horaLlegadaEstimada);
+        vuelo.setHoraSalidaEstimada(horaSalida);
+        vuelo.setHoraLlegadaEstimada(horaLlegada);
 
         vuelo.setCapacidadMaxima(Long.valueOf(capacidad));
         vuelo.setAvion(avion);
@@ -170,6 +217,7 @@ public class AdminAerolineaController {
 
 
     }
+
     @FXML
     void guardarAvion(ActionEvent event){
         if (txtCodigoAvion.getText().equals("") || txtNombreAvion.getText().equals("") || txtCapacidadBultoAvion.getText().equals("")
@@ -248,16 +296,27 @@ public class AdminAerolineaController {
 
 
         limpiarCampos();
+
+
+    public void mostrarAeropuertosAsociadosAction(ActionEvent event ){
+        ObservableList<String> aeropuertosObservable = FXCollections.observableArrayList();
+        List<Aeropuerto> aeropuertosAsociados = aerolineaService.obtenerAeropuertosAsociados(aerolinea);
+        for (Aeropuerto aeropuerto : aeropuertosAsociados)
+            aeropuertosObservable.add(aeropuerto.getNombre()+" "+aeropuerto.getCodigo());
+        if (aeropuertosAsociados.size() == 0){
+            showAlert("No hay aerolineas asociadas", "No hay aerolineas asociadas a este aeropuerto");
+        }
+
+        aeropuertosAsociadosListView.setItems(aeropuertosObservable);
+
     }
     private void limpiarCampos(){
         txtCodigoVuelo.setText("");
         choiceBoxAeropuertoOrigen.setValue(null);
         choiceBoxAeropuertoDestino.setValue(null);
-        txtFechaSalida.setText("");
-        txtFechaLlegada.setText("");
+
+        
         choiceBoxAvion.setValue(null);
-        txtHoraSalidaEstimada.setText("");
-        txtHoraLlegadaEstimada.setText("");
         txtCapacidad.setText("");
         txtCodigoAvion.setText("");
         txtNombreAvion.setText("");
@@ -269,6 +328,14 @@ public class AdminAerolineaController {
         txtPasaporte.setText("");
         txtCorreoPasajero.setText("");
         txtContraseñaPasajero.setText("");
+        txtAvion.setText("");
+        txtCapacidad.setText("");
+        fechaSalidaDate.setValue(null);
+        fechaLlegadaDate.setValue(null);
+        horaSalidaHoras.setValue(null);
+        horaSalidaMinutos.setValue(null);
+        horaLlegadaHoras.setValue(null);
+        horaLlegadaMinutos.setValue(null);
 
 
 
