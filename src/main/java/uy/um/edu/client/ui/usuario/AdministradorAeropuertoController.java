@@ -6,6 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
@@ -16,10 +18,7 @@ import org.springframework.stereotype.Controller;
 import uy.um.edu.client.ClientApplication;
 import uy.um.edu.client.entities.Usuario;
 import uy.um.edu.client.entities.aerolinea.Aerolinea;
-import uy.um.edu.client.entities.aeropuerto.AdminAeropuerto;
-import uy.um.edu.client.entities.aeropuerto.Aeropuerto;
-import uy.um.edu.client.entities.aeropuerto.MaleteroAeropuerto;
-import uy.um.edu.client.entities.aeropuerto.UsuarioAeropuerto;
+import uy.um.edu.client.entities.aeropuerto.*;
 import uy.um.edu.client.entities.vuelos.Vuelo;
 import uy.um.edu.client.exceptions.EntidadYaExiste;
 import uy.um.edu.client.exceptions.InvalidInformation;
@@ -29,6 +28,7 @@ import uy.um.edu.client.services.AeropuertoService;
 import uy.um.edu.client.services.UsuarioService;
 import uy.um.edu.client.services.VueloService;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -109,6 +109,8 @@ public class AdministradorAeropuertoController {
     private ListView<Aerolinea> aerolineasDisponiblesListView;
     private AdminAeropuerto adminAeropuerto;
     private Aeropuerto aeropuerto;
+    private List<PuertaAeropuerto> puertas;
+    private List<PistaAeropuerto> pistas;
 
 
 
@@ -129,6 +131,12 @@ public class AdministradorAeropuertoController {
         // Mostrar Nombre Aeropuerto
         this.nombreAeropuertoLabel.setText(aeropuerto.getNombre());
         this.nombreAdminLabel.setText(adminAeropuerto.getNombre() + " " + adminAeropuerto.getApellido());
+
+        List<PuertaAeropuerto> puertasP = (List<PuertaAeropuerto>) aeropuertoService.obtenerPuertas(aeropuerto);
+        this.puertas = puertasP;
+        List<PistaAeropuerto> pistasP = (List<PistaAeropuerto>) aeropuertoService.obtenerPistas(aeropuerto);
+        this.pistas = pistasP;
+
     }
 
     @FXML
@@ -268,6 +276,8 @@ public class AdministradorAeropuertoController {
             }
         });
 
+        aerolineasDisponiblesListView.setItems(aerolineasObservable);
+
 
     }
 
@@ -297,13 +307,24 @@ public class AdministradorAeropuertoController {
 
                     validarBtn.setOnAction(e -> {
                         // Lógica para validar el vuelo
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    Parent root = null;
+                    ValidarVueloController controller = ClientApplication.getContext().getBean(ValidarVueloController.class);
+                    controller.setVuelo(item);
+                    controller.setPistas(pistas);
+                    controller.setPuertas(puertas);
+                    controller.setAeropuerto(aeropuerto);
+
                         try {
-                            vueloService.validarVuelo(item, aeropuerto);
-                            showAlert("Vuelo validado", "El vuelo se ha validado correctamente");
-                        } catch (InvalidInformation ex) {
-                            showAlert("Error", "Ha ocurrido un error. El aeropuerto no es ni el de origen ni el de destino");
+                            fxmlLoader.setLocation(AdministradorAeropuertoController.class.getResource("ValidarVuelo.fxml"));
+                            fxmlLoader.setController(controller);
+                            root = fxmlLoader.load();
+                            Stage stage = new Stage();
+                            stage.setScene(new Scene(root));
+                            stage.show();
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
                         }
-                        System.out.println("Validar vuelo" + item.getCodigoVuelo());
                     });
 
                     rechazarBtn.setOnAction(e -> {
