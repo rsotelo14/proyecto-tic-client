@@ -16,10 +16,7 @@ import uy.um.edu.client.entities.vuelos.EstadoVuelo;
 import uy.um.edu.client.entities.vuelos.Vuelo;
 import uy.um.edu.client.exceptions.EntidadYaExiste;
 import uy.um.edu.client.exceptions.InvalidInformation;
-import uy.um.edu.client.services.AeropuertoService;
-import uy.um.edu.client.services.AvionService;
-import uy.um.edu.client.services.UsuarioAerolineaService;
-import uy.um.edu.client.services.VueloService;
+import uy.um.edu.client.services.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -36,8 +33,11 @@ public class AdminAerolineaController {
     private AvionService avionService;
     @Autowired
     private VueloService vueloService;
+    @Autowired
+    private AerolineaService aerolineaService;
     @FXML
     private TextField txtCodigoVuelo;
+
 
     @FXML
     private ChoiceBox<Aeropuerto> choiceBoxAeropuertoOrigen;
@@ -67,6 +67,8 @@ public class AdminAerolineaController {
     private Label nombreAdminAerolinea;
     @FXML
     private Label nombreAerolinea;
+    @FXML
+    private ListView<String> aeropuertosAsociadosListView;
 
     private AdminAerolinea adminAerolinea;
     private Aerolinea aerolinea;
@@ -173,6 +175,19 @@ public class AdminAerolineaController {
         }
         limpiarCampos();
 
+
+    }
+
+    public void mostrarAeropuertosAsociadosAction(ActionEvent event ){
+        ObservableList<String> aeropuertosObservable = FXCollections.observableArrayList();
+        List<Aeropuerto> aeropuertosAsociados = aerolineaService.obtenerAeropuertosAsociados(aerolinea);
+        for (Aeropuerto aeropuerto : aeropuertosAsociados)
+            aeropuertosObservable.add(aeropuerto.getNombre()+" "+aeropuerto.getCodigo());
+        if (aeropuertosAsociados.size() == 0){
+            showAlert("No hay aerolineas asociadas", "No hay aerolineas asociadas a este aeropuerto");
+        }
+
+        aeropuertosAsociadosListView.setItems(aeropuertosObservable);
 
     }
     private void limpiarCampos(){
