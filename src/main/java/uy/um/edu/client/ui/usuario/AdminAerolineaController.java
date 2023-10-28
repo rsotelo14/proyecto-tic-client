@@ -12,15 +12,20 @@ import org.springframework.stereotype.Controller;
 import uy.um.edu.client.entities.aerolinea.AdminAerolinea;
 import uy.um.edu.client.entities.aerolinea.Aerolinea;
 import uy.um.edu.client.entities.aeropuerto.Aeropuerto;
+import uy.um.edu.client.entities.pasajeros.Pasajero;
+import uy.um.edu.client.entities.vuelos.Avion;
 import uy.um.edu.client.entities.vuelos.EstadoVuelo;
 import uy.um.edu.client.entities.vuelos.Vuelo;
 import uy.um.edu.client.exceptions.EntidadYaExiste;
 import uy.um.edu.client.exceptions.InvalidInformation;
 import uy.um.edu.client.services.*;
 
+import javax.swing.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 @Controller
@@ -30,6 +35,8 @@ public class AdminAerolineaController {
     @Autowired
     private AeropuertoService aeropuertoService;
     @Autowired
+    private PasajeroService pasajeroService;
+    @Autowired
     private AvionService avionService;
     @Autowired
     private VueloService vueloService;
@@ -37,6 +44,8 @@ public class AdminAerolineaController {
     private AerolineaService aerolineaService;
     @FXML
     private TextField txtCodigoVuelo;
+    @FXML
+    private ChoiceBox<Avion> choiceBoxAvion;
 
 
     @FXML
@@ -55,6 +64,7 @@ public class AdminAerolineaController {
 
     @FXML
     private ChoiceBox<Integer> horaSalidaHoras;
+
     @FXML
     private ChoiceBox<Integer> horaSalidaMinutos;
     @FXML
@@ -68,21 +78,49 @@ public class AdminAerolineaController {
     @FXML
     private Label nombreAerolinea;
     @FXML
+
+    private TextField txtNombreAvion;
+    @FXML
+    private TextField txtCapacidadBultoAvion;
+    @FXML
+    private TextField txtCapacidadAsientosAvion;
+    @FXML
+    private TextField txtTipoAvion;
+    @FXML
+    private TextField txtCodigoAvion;
+
     private ListView<String> aeropuertosAsociadosListView;
 
+
+    @FXML
+    private TextField txtCorreoPasajero;
+    @FXML
+    private TextField txtContraseñaPasajero;
+    @FXML
+    private TextField txtNombrePasajero;
+    @FXML
+    private TextField txtApellidoPasajero;
+    @FXML
+    private TextField getTxtNombrePasajero;
+    @FXML
+    private TextField txtPasaporte;
     private AdminAerolinea adminAerolinea;
     private Aerolinea aerolinea;
     private List<Aeropuerto> aeropuertosAsociados;
+    private List<Avion> avionesAsociados;
     public void initialize(){
         this.nombreAerolinea.setText(aerolinea.getNombre());
         this.nombreAdminAerolinea.setText(adminAerolinea.getNombre());
 
         aeropuertosAsociados = (List<Aeropuerto>) aeropuertoService.obtenerAeropuertosPorAerolinea(aerolinea);
-
+        avionesAsociados= (List<Avion>) avionService.obtenerAvionesAerolinea(aerolinea);
         choiceBoxAeropuertoOrigen.getItems().addAll(aeropuertosAsociados);
         choiceBoxAeropuertoOrigen.getItems().add(null);
         choiceBoxAeropuertoDestino.getItems().addAll(aeropuertosAsociados);
         choiceBoxAeropuertoDestino.getItems().add(null);
+
+        choiceBoxAvion.getItems().addAll(avionesAsociados);
+        choiceBoxAvion.getItems().add(null);
 
         ObservableList<Integer> horas = FXCollections.observableArrayList();
         horas.add(null);
@@ -99,6 +137,7 @@ public class AdminAerolineaController {
         }
         horaLlegadaMinutos.setItems(minutos);
         horaSalidaMinutos.setItems(minutos);
+
     }
     @FXML
     void close(ActionEvent actionEvent) {
@@ -110,6 +149,7 @@ public class AdminAerolineaController {
     @FXML
     void guardarVuelo(ActionEvent event){
         if (txtCodigoVuelo.getText().equals("") || choiceBoxAeropuertoOrigen.getValue().equals(null) || choiceBoxAeropuertoDestino.getValue().equals(null)
+
                 || fechaSalidaDate.getValue().equals(null) || fechaLlegadaDate.getValue().equals(null)
                  || txtAvion.getText().equals("") || txtCapacidad.getText().equals("")
                 || horaSalidaHoras.getValue().equals(null) || horaSalidaMinutos.getValue().equals(null)
@@ -132,6 +172,7 @@ public class AdminAerolineaController {
             showAlert("Error", "El aeropuerto de destino no puede ser el mismo que el de origen.");
             return;
         }
+        Avion avion = this.choiceBoxAvion.getValue();
         LocalDate fechaSalida = fechaSalidaDate.getValue();
         LocalDate fechaLlegada = fechaLlegadaDate.getValue();
         //String codigoAvion = this.txtAvion.getText();
@@ -156,12 +197,11 @@ public class AdminAerolineaController {
         vuelo.setHoraLlegadaEstimada(horaLlegada);
 
         vuelo.setCapacidadMaxima(Long.valueOf(capacidad));
-        //vuelo.setAvion(avion);
+        vuelo.setAvion(avion);
         vuelo.setEstado(EstadoVuelo.PENDIENTE);
         //guardar en la base de datos
         try {
             vueloService.agregarVuelo(vuelo);
-            // Puedes mostrar una confirmación al usuario si lo deseas
             showAlert("Vuelo creado", "El vuelo se ha creado correctamente.");
         } catch (InvalidInformation e) {
 
@@ -177,6 +217,86 @@ public class AdminAerolineaController {
 
 
     }
+
+    @FXML
+    void guardarAvion(ActionEvent event){
+        if (txtCodigoAvion.getText().equals("") || txtNombreAvion.getText().equals("") || txtCapacidadBultoAvion.getText().equals("")
+                || txtCapacidadAsientosAvion.getText().equals("") || txtTipoAvion.getText().equals("")){
+            showAlert( "Datos faltantes!",
+                    "No se ingresaron los datos necesarios para completar la creación del avion.");
+            return;
+        }
+        //Obtener datos ingresados por el usuario
+        String codigoAvion = this.txtCodigoAvion.getText();
+        String nombreAvion = this.txtNombreAvion.getText();
+        String capacidadBultoAvion = this.txtCapacidadBultoAvion.getText();
+        String capacidadAsientosAvion = this.txtCapacidadAsientosAvion.getText();
+        String tipoAvion = this.txtTipoAvion.getText();
+        //crear la instancia avion
+        Avion avion = new Avion();
+        avion.setCodigo(codigoAvion);
+        avion.setAerolinea(aerolinea);
+        avion.setNombre(nombreAvion);
+        avion.setCapacidad(Long.valueOf(capacidadBultoAvion));
+        avion.setCapacidad(Long.valueOf(capacidadAsientosAvion));
+        avion.setTipoAvion(tipoAvion);
+        //guardar en la base de datos
+        try{
+            avionService.agregarAvion(avion);
+            showAlert("Avion creado", "El avion se ha creado correctamente.");
+        } catch (EntidadYaExiste e) {
+            showAlert(
+                    "Avion ya existe !",
+                    "Se encontro un avion con el mismo código");
+            return;
+        }
+        limpiarCampos();
+
+    }
+    @FXML
+    void guardarPasajero(ActionEvent event){
+        if (txtNombrePasajero.getText().equals("") || txtApellidoPasajero.getText().equals("") || txtPasaporte.getText().equals("")
+                || txtCorreoPasajero.getText().equals("") || txtContraseñaPasajero.getText().equals("")){
+            showAlert( "Datos faltantes!",
+                    "No se ingresaron los datos necesarios para completar la creación del pasajero.");
+            return;
+        }
+        if (!validarFormatoCorreo(txtCorreoPasajero.getText())) {
+            showAlert("Formato de correo incorrecto!", "El correo ingresado no tiene el formato correcto.");
+            return;
+        }
+        //Obtener datos ingresados por el usuario
+        String nombrePasajero = this.txtNombrePasajero.getText();
+        String apellidoPasajero = this.txtApellidoPasajero.getText();
+        String pasaporte = this.txtPasaporte.getText();
+        String correoPasajero = this.txtCorreoPasajero.getText();
+        String contraseñaPasajero = this.txtContraseñaPasajero.getText();
+        //crear la instancia pasajero
+        Pasajero pasajero = new Pasajero();
+        pasajero.setNombre(nombrePasajero);
+        pasajero.setApellido(apellidoPasajero);
+        pasajero.setPasaporte(pasaporte);
+        pasajero.setCorreo(correoPasajero);
+        pasajero.setContrasena(contraseñaPasajero);
+        //guardar en la base de datos
+        try{
+            pasajeroService.agregarPasajero(pasajero);
+            showAlert("Pasajero creado", "El pasajero se ha creado correctamente.");
+        } catch (EntidadYaExiste e) {
+            showAlert(
+                    "Pasajero ya existe !",
+                    "Se encontro un pasajero con el mismo pasaporte");
+            return;
+        }
+
+
+
+
+
+
+
+        limpiarCampos();
+
 
     public void mostrarAeropuertosAsociadosAction(ActionEvent event ){
         ObservableList<String> aeropuertosObservable = FXCollections.observableArrayList();
@@ -194,6 +314,20 @@ public class AdminAerolineaController {
         txtCodigoVuelo.setText("");
         choiceBoxAeropuertoOrigen.setValue(null);
         choiceBoxAeropuertoDestino.setValue(null);
+
+        
+        choiceBoxAvion.setValue(null);
+        txtCapacidad.setText("");
+        txtCodigoAvion.setText("");
+        txtNombreAvion.setText("");
+        txtCapacidadBultoAvion.setText("");
+        txtCapacidadAsientosAvion.setText("");
+        txtTipoAvion.setText("");
+        txtApellidoPasajero.setText("");
+        txtNombrePasajero.setText("");
+        txtPasaporte.setText("");
+        txtCorreoPasajero.setText("");
+        txtContraseñaPasajero.setText("");
         txtAvion.setText("");
         txtCapacidad.setText("");
         fechaSalidaDate.setValue(null);
@@ -204,6 +338,7 @@ public class AdminAerolineaController {
         horaLlegadaMinutos.setValue(null);
 
 
+
     }
     private void showAlert(String title, String contextText) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -211,6 +346,12 @@ public class AdminAerolineaController {
         alert.setHeaderText(null);
         alert.setContentText(contextText);
         alert.showAndWait();
+    }
+    private boolean validarFormatoCorreo(String correo) {
+        String EMAIL_PATTERN = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        Matcher matcher = pattern.matcher(correo);
+        return matcher.matches();
     }
 
     public void setAdminAerolinea(AdminAerolinea adminAerolinea) {
