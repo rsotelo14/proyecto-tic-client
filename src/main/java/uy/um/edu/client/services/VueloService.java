@@ -66,7 +66,7 @@ public class VueloService {
     }
 
     public void rechazarVuelo(Vuelo item, Aeropuerto aeropuerto) throws InvalidInformation{
-        ResponseEntity<Vuelo> response = restTemplate.postForEntity(baseURL + "/vuelos/" + item.getCodigoVuelo() + "/rechazar/" + aeropuerto.getCodigo(), aeropuerto, Vuelo.class);
+        ResponseEntity<String> response = restTemplate.postForEntity(baseURL + "/vuelos/" + item.getCodigoVuelo() + "/rechazar/" + aeropuerto.getCodigo(), aeropuerto, String.class);
         if (response.getStatusCode().is2xxSuccessful()) {
             return;
         } else {
