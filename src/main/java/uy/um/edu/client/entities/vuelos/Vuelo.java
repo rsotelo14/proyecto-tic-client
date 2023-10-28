@@ -3,6 +3,9 @@ import uy.um.edu.client.entities.aerolinea.Aerolinea;
 import uy.um.edu.client.entities.aeropuerto.Aeropuerto;
 import uy.um.edu.client.entities.aeropuerto.PuertaAeropuerto;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public class Vuelo {
     private Long id;
     private String codigoVuelo;
@@ -10,16 +13,17 @@ public class Vuelo {
 
     private Aeropuerto aeropuertoOrigen;
     private Aeropuerto aeropuertoDestino;
-    private PuertaAeropuerto puertaOrigen;
+    private ReservaPista reservaPistaOrigen;
+    private ReservaPista reservaPistaDestino;
+    private ReservaPuerta reservaPuertaOrigen;
+    private ReservaPuerta reservaPuertaDestino;
 
-    private PuertaAeropuerto puertaDestino;
-
-    private String fechaSalida;
-    private String fechaLlegada;
-    private String horaSalidaEstimada;
-    private String horaSalidaReal;
-    private String horaLlegadaEstimada;
-    private String horaLlegadaReal;
+    private LocalDate fechaSalida;
+    private LocalDate fechaLlegada;
+    private LocalTime horaSalidaEstimada;
+    private LocalTime horaSalidaReal;
+    private LocalTime horaLlegadaEstimada;
+    private LocalTime horaLlegadaReal;
     private Long capacidadMaxima;
     private Long pasajerosConfirmados;
 
@@ -34,8 +38,8 @@ public class Vuelo {
     public Vuelo(String codigoVuelo ,Aerolinea aerolinea, Aeropuerto aeropuerto_origen,
 
                  Aeropuerto aeropuerto_destino,
-                 String fecha_salida, String fecha_llegada, String hora_salida_estimada, String hora_salida_real,
-                 String hora_llegada_estimada, String hora_llegada_real, Long capacidad_maxima,
+                 LocalDate fecha_salida, LocalDate fecha_llegada, LocalTime hora_salida_estimada, LocalTime hora_salida_real,
+                 LocalTime hora_llegada_estimada, LocalTime hora_llegada_real, Long capacidad_maxima,
                  Long pasajeros_confirmados, Avion avion, EstadoVuelo estado) {
         this.codigoVuelo=codigoVuelo;
         this.aerolinea = aerolinea;
@@ -94,67 +98,51 @@ public class Vuelo {
         this.aeropuertoDestino = aeropuertoDestino;
     }
 
-    public PuertaAeropuerto getPuertaOrigen() {
-        return puertaOrigen;
-    }
-
-    public void setPuertaOrigen(PuertaAeropuerto puertaOrigen) {
-        this.puertaOrigen = puertaOrigen;
-    }
-
-    public PuertaAeropuerto getPuertaDestino() {
-        return puertaDestino;
-    }
-
-    public void setPuertaDestino(PuertaAeropuerto puertaDestino) {
-        this.puertaDestino = puertaDestino;
-    }
-
-    public String getFechaSalida() {
+    public LocalDate getFechaSalida() {
         return fechaSalida;
     }
 
-    public void setFechaSalida(String fechaSalida) {
+    public void setFechaSalida(LocalDate fechaSalida) {
         this.fechaSalida = fechaSalida;
     }
 
-    public String getFechaLlegada() {
+    public LocalDate getFechaLlegada() {
         return fechaLlegada;
     }
 
-    public void setFechaLlegada(String fechaLlegada) {
+    public void setFechaLlegada(LocalDate fechaLlegada) {
         this.fechaLlegada = fechaLlegada;
     }
 
-    public String getHoraSalidaEstimada() {
+    public LocalTime getHoraSalidaEstimada() {
         return horaSalidaEstimada;
     }
 
-    public void setHoraSalidaEstimada(String horaSalidaEstimada) {
+    public void setHoraSalidaEstimada(LocalTime horaSalidaEstimada) {
         this.horaSalidaEstimada = horaSalidaEstimada;
     }
 
-    public String getHoraSalidaReal() {
+    public LocalTime getHoraSalidaReal() {
         return horaSalidaReal;
     }
 
-    public void setHoraSalidaReal(String horaSalidaReal) {
+    public void setHoraSalidaReal(LocalTime horaSalidaReal) {
         this.horaSalidaReal = horaSalidaReal;
     }
 
-    public String getHoraLlegadaEstimada() {
+    public LocalTime getHoraLlegadaEstimada() {
         return horaLlegadaEstimada;
     }
 
-    public void setHoraLlegadaEstimada(String horaLlegadaEstimada) {
+    public void setHoraLlegadaEstimada(LocalTime horaLlegadaEstimada) {
         this.horaLlegadaEstimada = horaLlegadaEstimada;
     }
 
-    public String getHoraLlegadaReal() {
+    public LocalTime getHoraLlegadaReal() {
         return horaLlegadaReal;
     }
 
-    public void setHoraLlegadaReal(String horaLlegadaReal) {
+    public void setHoraLlegadaReal(LocalTime horaLlegadaReal) {
         this.horaLlegadaReal = horaLlegadaReal;
     }
 
@@ -189,5 +177,37 @@ public class Vuelo {
 
     public void setEstado(EstadoVuelo estado) {
         this.estado = estado;
+    }
+
+    public ReservaPista getReservaPistaOrigen() {
+        return reservaPistaOrigen;
+    }
+
+    public void setReservaPistaOrigen(ReservaPista reservaPistaOrigen) {
+        this.reservaPistaOrigen = reservaPistaOrigen;
+    }
+
+    public ReservaPista getReservaPistaDestino() {
+        return reservaPistaDestino;
+    }
+
+    public void setReservaPistaDestino(ReservaPista reservaPistaDestino) {
+        this.reservaPistaDestino = reservaPistaDestino;
+    }
+
+    public ReservaPuerta getReservaPuertaOrigen() {
+        return reservaPuertaOrigen;
+    }
+
+    public void setReservaPuertaOrigen(ReservaPuerta reservaPuertaOrigen) {
+        this.reservaPuertaOrigen = reservaPuertaOrigen;
+    }
+
+    public ReservaPuerta getReservaPuertaDestino() {
+        return reservaPuertaDestino;
+    }
+
+    public void setReservaPuertaDestino(ReservaPuerta reservaPuertaDestino) {
+        this.reservaPuertaDestino = reservaPuertaDestino;
     }
 }

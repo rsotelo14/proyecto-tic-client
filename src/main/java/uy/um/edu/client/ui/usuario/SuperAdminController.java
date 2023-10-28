@@ -74,7 +74,7 @@ public class SuperAdminController {
             showAlert("Datos faltantes!", "No se ingresaron los datos necesarios para completar el ingreso.");
             return;
         }
-        if (!validarFormatoCorreo()) {
+        if (!validarFormatoCorreo(txtCorreoAerolinea.getText())) {
             showAlert("Formato de correo incorrecto!", "El correo ingresado no tiene el formato correcto.");
             return;
         }
@@ -146,8 +146,7 @@ public class SuperAdminController {
         return true;
     }
 
-    private boolean validarFormatoCorreo() {
-        String correo = txtCorreoAerolinea.getText();
+    private boolean validarFormatoCorreo(String correo) {
         String EMAIL_PATTERN = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
         Pattern pattern = Pattern.compile(EMAIL_PATTERN);
         Matcher matcher = pattern.matcher(correo);
@@ -166,6 +165,10 @@ public class SuperAdminController {
         String codigoAeropuerto = txtCodigoAeropuerto.getText();
         if (!validarFormatoCodigoAeropuerto()){
             showAlert("Formato de codigo incorrecto!", "El codigo ingresado no tiene el formato correcto.");
+            return;
+        }
+        if (!validarFormatoCorreo(txtCorreoAeropuerto.getText())) {
+            showAlert("Formato de correo incorrecto!", "El correo ingresado no tiene el formato correcto.");
             return;
         }
         

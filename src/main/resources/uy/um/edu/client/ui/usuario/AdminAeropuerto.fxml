@@ -99,6 +99,7 @@
                         <Button layoutX="70.0" layoutY="332.0" mnemonicParsing="false" onAction="#mostrarAerolineasDisponiblesAction" text="Mostrar Aerolineas Disponibles" />
                   <ListView id="aerolineasDisponiblesListView" fx:id="aerolineasAsociadasListView" layoutX="337.0" layoutY="86.0" prefHeight="200.0" prefWidth="222.0" />
                   <Button layoutX="361.0" layoutY="332.0" mnemonicParsing="false" onAction="#mostrarAerolineasAsociadasAction" text="Mostrar Aerolineas Asociadas" />
+
                     </children></AnchorPane>
             </content>
         </Tab>
