@@ -21,7 +21,7 @@ public class AvionService {
         this.restTemplate = restTemplate;
     }
     public void agregarAvion(Avion avion) throws EntidadYaExiste{
-        ResponseEntity<Avion> response = restTemplate.postForEntity(baseURL+ "/avion", avion, Avion.class); //puede estar mal escrito
+        ResponseEntity<Avion> response = restTemplate.postForEntity(baseURL+ "/aerolineas/avion", avion, Avion.class); //puede estar mal escrito
         if (response.getStatusCode().is2xxSuccessful()) {
             return;
         } else {

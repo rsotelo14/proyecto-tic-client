@@ -16,7 +16,7 @@ public class PasajeroService{
             this.restTemplate = restTemplate;
     }
     public void agregarPasajero(Pasajero pasajero) throws EntidadYaExiste {
-        ResponseEntity<Pasajero> response = restTemplate.postForEntity(baseURL+ "/pasajero", pasajero, Pasajero.class);
+        ResponseEntity<String> response = restTemplate.postForEntity(baseURL+ "/usuarios/pasajero", pasajero, String.class);
         if (response.getStatusCode().is2xxSuccessful()) {
             return;
         } else {

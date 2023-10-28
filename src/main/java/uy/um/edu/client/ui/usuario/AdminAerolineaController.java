@@ -53,8 +53,6 @@ public class AdminAerolineaController {
     @FXML
     private ChoiceBox<Aeropuerto> choiceBoxAeropuertoDestino;
 
-    @FXML
-    private TextField txtAvion;
 
     @FXML
     private DatePicker fechaSalidaDate;
@@ -88,6 +86,8 @@ public class AdminAerolineaController {
     private TextField txtTipoAvion;
     @FXML
     private TextField txtCodigoAvion;
+
+    @FXML
 
     private ListView<String> aeropuertosAsociadosListView;
 
@@ -151,11 +151,11 @@ public class AdminAerolineaController {
         if (txtCodigoVuelo.getText().equals("") || choiceBoxAeropuertoOrigen.getValue().equals(null) || choiceBoxAeropuertoDestino.getValue().equals(null)
 
                 || fechaSalidaDate.getValue().equals(null) || fechaLlegadaDate.getValue().equals(null)
-                 || txtAvion.getText().equals("") || txtCapacidad.getText().equals("")
+                || txtCapacidad.getText().equals("")       || choiceBoxAvion.getValue().equals(null)
                 || horaSalidaHoras.getValue().equals(null) || horaSalidaMinutos.getValue().equals(null)
                 || horaLlegadaHoras.getValue().equals(null) || horaLlegadaMinutos.getValue().equals(null)
-        ){
-            showAlert( "Datos faltantes!",
+        ) {
+            showAlert("Datos faltantes!",
                     "No se ingresaron los datos necesarios para completar la creación del vuelo.");
             return;
         }
@@ -254,10 +254,10 @@ public class AdminAerolineaController {
 
     }
     @FXML
-    void guardarPasajero(ActionEvent event){
+    void guardarPasajero(ActionEvent event) {
         if (txtNombrePasajero.getText().equals("") || txtApellidoPasajero.getText().equals("") || txtPasaporte.getText().equals("")
-                || txtCorreoPasajero.getText().equals("") || txtContraseñaPasajero.getText().equals("")){
-            showAlert( "Datos faltantes!",
+                || txtCorreoPasajero.getText().equals("") || txtContraseñaPasajero.getText().equals("")) {
+            showAlert("Datos faltantes!",
                     "No se ingresaron los datos necesarios para completar la creación del pasajero.");
             return;
         }
@@ -279,9 +279,10 @@ public class AdminAerolineaController {
         pasajero.setCorreo(correoPasajero);
         pasajero.setContrasena(contraseñaPasajero);
         //guardar en la base de datos
-        try{
+        try {
             pasajeroService.agregarPasajero(pasajero);
             showAlert("Pasajero creado", "El pasajero se ha creado correctamente.");
+            limpiarCampos();
         } catch (EntidadYaExiste e) {
             showAlert(
                     "Pasajero ya existe !",
@@ -291,18 +292,14 @@ public class AdminAerolineaController {
 
 
 
-
-
-
-
-        limpiarCampos();
-
-
+    }
     public void mostrarAeropuertosAsociadosAction(ActionEvent event ){
         ObservableList<String> aeropuertosObservable = FXCollections.observableArrayList();
         List<Aeropuerto> aeropuertosAsociados = aerolineaService.obtenerAeropuertosAsociados(aerolinea);
-        for (Aeropuerto aeropuerto : aeropuertosAsociados)
+        for (Aeropuerto aeropuerto : aeropuertosAsociados){
             aeropuertosObservable.add(aeropuerto.getNombre()+" "+aeropuerto.getCodigo());
+
+        }
         if (aeropuertosAsociados.size() == 0){
             showAlert("No hay aerolineas asociadas", "No hay aerolineas asociadas a este aeropuerto");
         }
@@ -315,7 +312,7 @@ public class AdminAerolineaController {
         choiceBoxAeropuertoOrigen.setValue(null);
         choiceBoxAeropuertoDestino.setValue(null);
 
-        
+
         choiceBoxAvion.setValue(null);
         txtCapacidad.setText("");
         txtCodigoAvion.setText("");
@@ -328,7 +325,7 @@ public class AdminAerolineaController {
         txtPasaporte.setText("");
         txtCorreoPasajero.setText("");
         txtContraseñaPasajero.setText("");
-        txtAvion.setText("");
+        choiceBoxAvion.setValue(null);
         txtCapacidad.setText("");
         fechaSalidaDate.setValue(null);
         fechaLlegadaDate.setValue(null);
