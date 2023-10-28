@@ -94,7 +94,6 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtAvion" layoutX="429.0" layoutY="206.0" />
                         <Button fx:id="crearVuelo" layoutX="357.0" layoutY="290.0" mnemonicParsing="false" onAction="#guardarVuelo" prefHeight="34.0" prefWidth="139.0" text="Crear vuelo">
                            <font>
                               <Font size="15.0" />
@@ -102,14 +101,108 @@
                         </Button>
                         <ChoiceBox fx:id="choiceBoxAeropuertoOrigen" layoutX="166.0" layoutY="73.0" prefWidth="150.0" />
                         <ChoiceBox fx:id="choiceBoxAeropuertoDestino" layoutX="166.0" layoutY="116.0" prefWidth="150.0" />
+
+                        <ChoiceBox fx:id="choiceBoxAvion" layoutX="429.0" layoutY="206.0" prefWidth="150.0" />
                         <DatePicker fx:id="fechaSalidaDate" editable="false" layoutX="161.0" layoutY="246.0" prefHeight="26.0" prefWidth="160.0" />
                         <DatePicker fx:id="fechaLlegadaDate" editable="false" layoutX="161.0" layoutY="289.0" prefHeight="26.0" prefWidth="160.0" />
                         <ChoiceBox fx:id="horaSalidaHoras" layoutX="166.0" layoutY="161.0" prefHeight="26.0" prefWidth="59.0" />
                         <ChoiceBox fx:id="horaSalidaMinutos" layoutX="241.0" layoutY="161.0" prefHeight="26.0" prefWidth="59.0" />
                         <ChoiceBox fx:id="horaLlegadaHoras" layoutX="166.0" layoutY="205.0" prefHeight="26.0" prefWidth="59.0" />
                         <ChoiceBox fx:id="horaLlegadaMinutos" layoutX="241.0" layoutY="205.0" prefHeight="26.0" prefWidth="59.0" />
+
                      </children></AnchorPane>
             </content>
+          </Tab>
+            <Tab text="Crear Avion">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="txtCodigoAvion" layoutX="164.0" layoutY="38.0" prefHeight="25.0" prefWidth="113.0" />
+                        <TextField fx:id="txtNombreAvion" layoutX="167.0" layoutY="125.0" prefHeight="25.0" prefWidth="109.0" />
+                        <TextField fx:id="txtTipoAvion" layoutX="165.0" layoutY="173.0" prefHeight="25.0" prefWidth="111.0" />
+                        <TextField fx:id="txtCapacidadBultoAvion" layoutX="166.0" layoutY="217.0" prefHeight="25.0" prefWidth="112.0" />
+                        <Label layoutX="14.0" layoutY="40.0" text="Codigo Avion">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="33.0" layoutY="127.0" text="Nombre">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="24.0" layoutY="165.0" text="Tipo Avion">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="20.0" layoutY="219.0" text="Capacidad Bulto">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtCapacidadAsientosAvion" layoutX="167.0" layoutY="81.0" />
+                        <Label layoutX="2.0" layoutY="82.0" prefHeight="22.0" prefWidth="144.0" text="Capacidad Asientos" textAlignment="CENTER">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="crearAvion" layoutX="77.0" layoutY="274.0" mnemonicParsing="false" onAction="#guardarAvion" prefHeight="34.0" prefWidth="139.0" text="Crear avion">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Crear Pasajero">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="txtNombrePasajero" layoutX="164.0" layoutY="38.0" prefHeight="25.0" prefWidth="113.0" />
+                        <TextField fx:id="txtCorreoPasajero" layoutX="167.0" layoutY="125.0" prefHeight="25.0" prefWidth="109.0" />
+                        <Label layoutX="35.0" layoutY="40.0" text="Nombre">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="40.0" layoutY="127.0" text="Correo">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="24.0" layoutY="165.0">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtApellidoPasajero" layoutX="166.0" layoutY="82.0" prefHeight="25.0" prefWidth="109.0" />
+                        <Label layoutX="31.0" layoutY="83.0" prefHeight="22.0" prefWidth="64.0" text="Apellido" textAlignment="CENTER">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="crearPasajero" layoutX="357.0" layoutY="290.0" mnemonicParsing="false" onAction="#guardarPasajero" prefHeight="34.0" prefWidth="139.0" text="Crear Pasajero">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="33.0" layoutY="167.0" text="Contraseña">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtContraseñaPasajero" layoutX="165.0" layoutY="167.0" prefHeight="25.0" prefWidth="108.0" />
+                        <Label layoutX="40.0" layoutY="219.0" text="Pasaporte">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtPasaporte" layoutX="165.0" layoutY="217.0" prefHeight="25.0" prefWidth="103.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
           </Tab>
             <Tab text="Aeropuertos Asociados">
               <content>
@@ -120,8 +213,10 @@
                      </children>
                   </AnchorPane>
               </content>
+
             </Tab>
         </tabs>
       </TabPane>
+
    </children>
 </AnchorPane>

@@ -11,5 +11,4 @@ public class UsuarioAerolineaService {
         this.restTemplate = restTemplate;
     }
 
-
 }

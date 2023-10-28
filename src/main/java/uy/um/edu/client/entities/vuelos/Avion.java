@@ -3,6 +3,8 @@ package uy.um.edu.client.entities.vuelos;
 
 
 import uy.um.edu.client.entities.aerolinea.Aerolinea;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.List;
 
@@ -13,6 +15,7 @@ public class Avion {
     private String nombre;
     private Long capacidad;
     private String tipoAvion;
+    @JsonIgnore
     private List<Vuelo> vuelos;
 
     public Avion(Long id, Aerolinea aerolinea, String nombre, Long capacidad, String tipoAvion, List<Vuelo> vuelos) {
@@ -22,6 +25,14 @@ public class Avion {
         this.capacidad = capacidad;
         this.tipoAvion = tipoAvion;
         this.vuelos = vuelos;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public Long getId() {
@@ -73,5 +84,12 @@ public class Avion {
     }
 
     public Avion() {
+    }
+
+    @Override
+    public String toString() {
+        return "Avion{" +
+                "codigo='" + codigo + '\'' +
+                '}';
     }
 }
