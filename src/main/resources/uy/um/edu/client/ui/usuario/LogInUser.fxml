@@ -24,11 +24,14 @@
             <TextField fx:id="txtContrasenaVisible" layoutX="158.0" layoutY="121.0" onKeyReleased="#ShowPasswordOnAction" />
             <ImageView fx:id="openedEye" fitHeight="19.0" fitWidth="19.0" layoutX="313.0" layoutY="125.0" onMouseClicked="#Open_Eye_ClickOnAction" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@img/open_eye.png" />
+                   <Image url="@img/open_eye.png" />
+
                </image></ImageView>
-            <ImageView fx:id="closedEye" fitHeight="19.0" fitWidth="19.0" layoutX="313.0" layoutY="143.0" onMouseClicked="#Close_Eye_ClickOnAction" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="closedEye" fitHeight="19.0" fitWidth="19.0" layoutX="313.0" layoutY="127.0" onMouseClicked="#Close_Eye_ClickOnAction" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@img/closeeye.png" />
+                   <Image url="@img/closeeye.png" />
+
+
                </image></ImageView>
 
             </children>
