@@ -13,36 +13,16 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="274.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uy.um.edu.client.ui.usuario.LogInController">
-    <center>
-        <AnchorPane prefHeight="317.0" prefWidth="459.0" BorderPane.alignment="CENTER">
-            <children>
-                <Label layoutX="23.0" layoutY="75.0" text="Correo" />
-                <Label layoutX="23.0" layoutY="125.0" text="Contraseña" />
-                <TextField fx:id="txtCorreo" layoutX="158.0" layoutY="69.0" promptText="Ingrese su Correo" />
-            <PasswordField fx:id="txtContrasena" layoutX="158.0" layoutY="121.0" onKeyReleased="#HidePasswordOnAction" promptText="Ingrese su Contraseña" />
-            <TextField fx:id="txtContrasenaVisible" layoutX="158.0" layoutY="121.0" onKeyReleased="#ShowPasswordOnAction" />
-            <ImageView fx:id="openedEye" fitHeight="19.0" fitWidth="19.0" layoutX="313.0" layoutY="125.0" onMouseClicked="#Open_Eye_ClickOnAction" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/open_eye.png" />
-               </image></ImageView>
-            <ImageView fx:id="closedEye" fitHeight="19.0" fitWidth="19.0" layoutX="313.0" layoutY="127.0" onMouseClicked="#Close_Eye_ClickOnAction" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/closeeye.png" />
-               </image></ImageView>
-
-            </children>
-        </AnchorPane>
-    </center>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="274.0" prefWidth="450.0" style="-fx-background-color: #2991E5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uy.um.edu.client.ui.usuario.LogInController">
     <top>
-        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Inicio de sesión" BorderPane.alignment="CENTER">
+        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Inicio de sesión" BorderPane.alignment="CENTER">
             <font>
                 <Font size="28.0" />
             </font>
         </Text>
     </top>
     <bottom>
-        <HBox alignment="CENTER_LEFT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="450.0" BorderPane.alignment="CENTER">
+        <HBox alignment="CENTER_LEFT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="36.0" prefWidth="450.0" BorderPane.alignment="CENTER">
             <children>
                 <Button fx:id="btnClose" mnemonicParsing="false" onAction="#close" text="Cancelar">
                     <HBox.margin>
@@ -53,4 +33,35 @@
             </children>
         </HBox>
     </bottom>
+   <right>
+        <AnchorPane prefHeight="181.0" prefWidth="450.0" style="-fx-background-color: #2991E5;" BorderPane.alignment="CENTER">
+            <children>
+                <Label layoutX="32.0" layoutY="111.0" text="Correo" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Label>
+                <Label layoutX="32.0" layoutY="161.0" text="Contraseña" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Label>
+                <TextField fx:id="txtCorreo" layoutX="167.0" layoutY="105.0" promptText="Ingrese su Correo" />
+            <PasswordField fx:id="txtContrasena" layoutX="167.0" layoutY="157.0" onKeyReleased="#HidePasswordOnAction" promptText="Ingrese su Contraseña" />
+            <TextField fx:id="txtContrasenaVisible" layoutX="167.0" layoutY="157.0" onKeyReleased="#ShowPasswordOnAction" />
+            <ImageView fx:id="openedEye" fitHeight="19.0" fitWidth="19.0" layoutX="322.0" layoutY="161.0" onMouseClicked="#Open_Eye_ClickOnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/open_eye.png" />
+               </image></ImageView>
+            <ImageView fx:id="closedEye" fitHeight="19.0" fitWidth="19.0" layoutX="322.0" layoutY="163.0" onMouseClicked="#Close_Eye_ClickOnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/closeeye.png" />
+               </image></ImageView>
+            <ImageView fitHeight="148.0" fitWidth="189.0" layoutX="19.0" layoutY="-27.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/logo-removebg-preview%20(1).png" />
+               </image>
+            </ImageView>
+
+            </children>
+        </AnchorPane>
+   </right>
 </BorderPane>
