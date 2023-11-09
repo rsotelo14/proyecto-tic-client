@@ -57,7 +57,7 @@
                </image></ImageView>
             <ImageView fitHeight="148.0" fitWidth="189.0" layoutX="19.0" layoutY="-27.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@img/logoSinFondo.png" />
+                  <Image url="@img/logosin.png" />
                </image>
             </ImageView>
 
