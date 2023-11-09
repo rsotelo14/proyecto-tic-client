@@ -25,7 +25,7 @@ import uy.um.edu.client.entities.aeropuerto.AdminAeropuerto;
 import uy.um.edu.client.entities.aeropuerto.MaleteroAeropuerto;
 import uy.um.edu.client.services.AeropuertoService;
 import uy.um.edu.client.services.UsuarioService;
-
+import uy.um.edu.client.ui.JavaFXApplication;
 
 
 import java.io.IOException;
@@ -210,6 +210,13 @@ public class LogInController {
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
+        Stage loginStage = JavaFXApplication.getPrimaryStage();
+        loginStage.hide();
+        stage.setOnCloseRequest(event1 -> {
+            limpiarCampos();
+            loginStage.show();
+
+        });
         close(event);
 
     }

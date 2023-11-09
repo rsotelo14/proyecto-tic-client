@@ -11,6 +11,12 @@ import java.security.Principal;
 
 public class JavaFXApplication extends Application  {
 
+    private static Stage primaryStage;
+
+    public static Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
     private Parent root;
 
     @Override
@@ -20,11 +26,13 @@ public class JavaFXApplication extends Application  {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        JavaFXApplication.primaryStage = primaryStage;
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
         root = fxmlLoader.load(JavaFXApplication.class.getResourceAsStream("usuario/LoginUser.fxml"));
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+
     }
 
     @Override
