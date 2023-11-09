@@ -22,6 +22,11 @@
                 <TextField fx:id="txtCorreo" layoutX="158.0" layoutY="69.0" promptText="Ingrese su Correo" />
             <PasswordField fx:id="txtContrasena" layoutX="158.0" layoutY="121.0" onKeyReleased="#HidePasswordOnAction" promptText="Ingrese su Contraseña" />
             <TextField fx:id="txtContrasenaVisible" layoutX="158.0" layoutY="121.0" onKeyReleased="#ShowPasswordOnAction" />
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/logo-removebg-preview.png" />
+               </image>
+            </ImageView>
             <ImageView fx:id="openedEye" fitHeight="19.0" fitWidth="19.0" layoutX="313.0" layoutY="125.0" onMouseClicked="#Open_Eye_ClickOnAction" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img/open_eye.png" />
