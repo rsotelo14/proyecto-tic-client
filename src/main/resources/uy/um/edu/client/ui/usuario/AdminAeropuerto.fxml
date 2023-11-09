@@ -1,33 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
     <tabs>
         <Tab text="Home">
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                     <children>
-                        <Label fx:id="bienvenidoLabel" layoutX="62.0" layoutY="49.0" text="Bienvenido">
+                        <Label fx:id="bienvenidoLabel" layoutX="55.0" layoutY="177.0" text="Bienvenido">
                             <font>
-                                <Font size="22.0" />
+                                <Font name="System Bold" size="22.0" />
                             </font>
                         </Label>
-                        <Label fx:id="nombreAdminLabel" layoutX="187.0" layoutY="49.0" text="Nombre">
+                        <Label fx:id="nombreAdminLabel" layoutX="180.0" layoutY="177.0" text="Nombre">
                             <font>
-                                <Font size="22.0" />
+                                <Font name="System Bold" size="22.0" />
                             </font>
                         </Label>
-                        <Label fx:id="aeropuertoLabel" layoutX="62.0" layoutY="186.0" text="Aeropuerto:">
+                        <Label fx:id="aeropuertoLabel" layoutX="43.0" layoutY="14.0" text="Aeropuerto:">
                             <font>
-                                <Font size="22.0" />
+                                <Font name="System Bold" size="22.0" />
                             </font>
                         </Label>
-                        <Label fx:id="nombreAeropuertoLabel" layoutX="187.0" layoutY="186.0" text="Nombre Aeropuerto">
+                        <Label fx:id="nombreAeropuertoLabel" layoutX="168.0" layoutY="14.0" text="Nombre Aeropuerto">
                             <font>
-                                <Font size="22.0" />
+                                <Font name="System Bold" size="22.0" />
                             </font>
                         </Label>
                     </children>
@@ -103,7 +111,7 @@
                     </children></AnchorPane>
             </content>
         </Tab>
-        <Tab text="Validar Vuelo">
+        <Tab onSelectionChanged="#mostrarVuelosPendientesAction" text="Validar Vuelo">
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                     <ListView fx:id="vuelosListView" layoutX="88.0" layoutY="28.0" prefHeight="273.0" prefWidth="422.0" visible="false" />
