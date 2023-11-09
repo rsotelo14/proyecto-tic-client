@@ -111,7 +111,7 @@
                     </children></AnchorPane>
             </content>
         </Tab>
-        <Tab onSelectionChanged="#mostrarVuelosPendientesAction" text="Validar Vuelo">
+        <Tab text="Validar Vuelo">
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                     <ListView fx:id="vuelosListView" layoutX="88.0" layoutY="28.0" prefHeight="273.0" prefWidth="422.0" visible="false" />
