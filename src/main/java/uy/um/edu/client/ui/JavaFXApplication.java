@@ -30,7 +30,8 @@ public class JavaFXApplication extends Application  {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
         root = fxmlLoader.load(JavaFXApplication.class.getResourceAsStream("usuario/LoginUser.fxml"));
-        primaryStage.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
         primaryStage.show();
 
     }
