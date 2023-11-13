@@ -1,5 +1,6 @@
 package uy.um.edu.client.ui.usuario;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -45,6 +46,9 @@ public class AdministradorAeropuertoController {
 
     @Autowired
     private VueloService vueloService;
+
+    @FXML
+    private TabPane tabPane;
 
     @FXML
     private TextField txtNombre;
@@ -140,15 +144,29 @@ public class AdministradorAeropuertoController {
         this.puertas = puertasP;
         List<PistaAeropuerto> pistasP = (List<PistaAeropuerto>) aeropuertoService.obtenerPistas(aeropuerto);
         this.pistas = pistasP;
-        Stage stage = (Stage) administradoresTableView.getScene().getWindow();
-        stage.addEventHandler(WindowEvent.WINDOW_SHOWN, window -> {
-            try {
-                mostrarUsuariosAction(new ActionEvent());
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+        tabPane.getSelectionModel().selectedItemProperty().addListener((ov, oldTab, newTab) -> {
+            onTabSelectionChanged(newTab);
         });
 
+    }
+    @FXML
+    public void onTabSelectionChanged(Tab tab){
+        if (tab.isSelected()){
+            if (tab.getText().equals("Mostrar Empleados")){
+                try {
+                    System.out.println("Mostrar empleados");
+                    mostrarUsuariosAction(null);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }else if (tab.getText().equals("Asociar Aerolinea")){
+                mostrarAerolineasDisponiblesAction(null);
+                mostrarAerolineasAsociadasAction(null);
+
+            }else if (tab.getText().equals("Validar Vuelo")){
+                mostrarVuelosPendientesAction(null);
+            }
+        }
     }
 
     @FXML
