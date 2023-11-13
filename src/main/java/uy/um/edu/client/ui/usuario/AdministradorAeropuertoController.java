@@ -13,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import uy.um.edu.client.ClientApplication;
@@ -139,6 +140,14 @@ public class AdministradorAeropuertoController {
         this.puertas = puertasP;
         List<PistaAeropuerto> pistasP = (List<PistaAeropuerto>) aeropuertoService.obtenerPistas(aeropuerto);
         this.pistas = pistasP;
+        Stage stage = (Stage) administradoresTableView.getScene().getWindow();
+        stage.addEventHandler(WindowEvent.WINDOW_SHOWN, window -> {
+            try {
+                mostrarUsuariosAction(new ActionEvent());
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
 
     }
 
