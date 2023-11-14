@@ -13,6 +13,8 @@ import uy.um.edu.client.entities.aerolinea.AdminAerolinea;
 import uy.um.edu.client.entities.aerolinea.Aerolinea;
 import uy.um.edu.client.entities.aeropuerto.Aeropuerto;
 import uy.um.edu.client.entities.pasajeros.Pasajero;
+import uy.um.edu.client.entities.pasajeros.PasaporteCodigoVuelo;
+import uy.um.edu.client.entities.vuelos.Asientos;
 import uy.um.edu.client.entities.vuelos.Avion;
 import uy.um.edu.client.entities.vuelos.EstadoVuelo;
 import uy.um.edu.client.entities.vuelos.Vuelo;
@@ -23,6 +25,7 @@ import uy.um.edu.client.services.*;
 import javax.swing.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -104,6 +107,10 @@ public class AdminAerolineaController {
     private TextField getTxtNombrePasajero;
     @FXML
     private TextField txtPasaporte;
+    @FXML
+    private TextField txtAgregarPasaporte;
+    @FXML
+    private TextField txtCodigoVueloPasajero;
     private AdminAerolinea adminAerolinea;
     private Aerolinea aerolinea;
     private List<Aeropuerto> aeropuertosAsociados;
@@ -199,6 +206,25 @@ public class AdminAerolineaController {
         vuelo.setCapacidadMaxima(Long.valueOf(capacidad));
         vuelo.setAvion(avion);
         vuelo.setEstado(EstadoVuelo.PENDIENTE);
+        int numeroCapacidad=0;
+        if (esNumero(capacidad)){
+            if (Integer.valueOf(capacidad) > avion.getCapacidad()){
+                showAlert("Error", "La capacidad del vuelo no puede ser mayor a la capacidad del avion.");
+                return;
+            }
+        }else{numeroCapacidad=Integer.valueOf(capacidad);
+        }
+        List<Asientos> listaAsientos =new ArrayList<Asientos>();
+        for (int i=0;i<numeroCapacidad;i++){
+            Asientos asiento = new Asientos();
+            asiento.setVuelo(vuelo);
+            asiento.setCheckIn(false);
+            asiento.setBoarding(false);
+            listaAsientos.add(asiento);
+
+        }
+        vuelo.setAsientos(listaAsientos);
+
         //guardar en la base de datos
         try {
             vueloService.agregarVuelo(vuelo);
@@ -307,6 +333,31 @@ public class AdminAerolineaController {
         aeropuertosAsociadosListView.setItems(aeropuertosObservable);
 
     }
+    @FXML
+    void asignarPasajero(ActionEvent event) {
+        if (txtAgregarPasaporte.getText().equals("") || txtCodigoVueloPasajero.getText().equals("")) {
+            showAlert("Datos faltantes!",
+                    "No se ingresaron los datos necesarios para completar la asignación del pasajero.");
+            return;
+        }
+        String pasaporte = this.txtAgregarPasaporte.getText();
+        String codigoVuelo = this.txtCodigoVueloPasajero.getText();
+        PasaporteCodigoVuelo pasaporteCodigoVuelo = new PasaporteCodigoVuelo();
+        pasaporteCodigoVuelo.setPasaporte(pasaporte);
+        pasaporteCodigoVuelo.setCodigoVuelo(codigoVuelo);
+        try {
+            pasajeroService.enviarPasaporteCodigoVuelo(pasaporteCodigoVuelo);
+        } catch (EntidadYaExiste e) {
+            throw new RuntimeException(e);
+        }
+        showAlert("Pasaporte enviado", "El pasaporte se ha enviado correctamente.");
+        limpiarCampos();
+    }
+
+
+
+
+
     private void limpiarCampos(){
         txtCodigoVuelo.setText("");
         choiceBoxAeropuertoOrigen.setValue(null);
@@ -333,6 +384,8 @@ public class AdminAerolineaController {
         horaSalidaMinutos.setValue(null);
         horaLlegadaHoras.setValue(null);
         horaLlegadaMinutos.setValue(null);
+        txtAgregarPasaporte.setText("");
+        txtCodigoVueloPasajero.setText("");
 
 
 
@@ -349,6 +402,15 @@ public class AdminAerolineaController {
         Pattern pattern = Pattern.compile(EMAIL_PATTERN);
         Matcher matcher = pattern.matcher(correo);
         return matcher.matches();
+    }
+    public static boolean esNumero(String str) {
+        try {
+            // Intentar convertir el String a un número
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     public void setAdminAerolinea(AdminAerolinea adminAerolinea) {

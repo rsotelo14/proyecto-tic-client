@@ -73,4 +73,12 @@ public class VueloService {
             throw new InvalidInformation("No se pudo rechazar el vuelo");
         }
     }
+    public Vuelo obtenerVueloPorCodigo(String codigo) {
+        ResponseEntity<Vuelo> response = restTemplate.getForEntity(baseURL + "/vuelos/" + codigo, Vuelo.class);
+        if (response.getStatusCode().is2xxSuccessful()) {
+            return response.getBody();
+        } else {
+            throw new RuntimeException();
+        }
+    }
 }

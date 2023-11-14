@@ -5,6 +5,7 @@ import uy.um.edu.client.entities.aeropuerto.PuertaAeropuerto;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 public class Vuelo {
     private Long id;
@@ -27,15 +28,23 @@ public class Vuelo {
     private Long capacidadMaxima;
     private Long pasajerosConfirmados;
 
+
     private EstadoVuelo estado;
 
     private Avion avion;
-
+    private List<Asientos> asientos;
     public Vuelo() {
     }
 
+    public List<Asientos> getAsientos() {
+        return asientos;
+    }
 
-    public Vuelo(String codigoVuelo ,Aerolinea aerolinea, Aeropuerto aeropuerto_origen,
+    public void setAsientos(List<Asientos> asientos) {
+        this.asientos = asientos;
+    }
+
+    public Vuelo(String codigoVuelo , Aerolinea aerolinea, Aeropuerto aeropuerto_origen,
 
                  Aeropuerto aeropuerto_destino,
                  LocalDate fecha_salida, LocalDate fecha_llegada, LocalTime hora_salida_estimada, LocalTime hora_salida_real,
