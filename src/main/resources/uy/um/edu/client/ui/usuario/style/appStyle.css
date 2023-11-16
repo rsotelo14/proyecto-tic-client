@@ -1,3 +1,23 @@
 .root {
-    -fx-background-color: #f0f0f0; /* Cambia #f0f0f0 por el color que prefieras */
+    -fx-background-color: linear-gradient(to right bottom, #3A77FF, #74E6DE );
+    -fx-text-fill: white;
+
+}
+.label {
+    -fx-text-fill: white;
+    -fx-font-weight:bold;
+    -fx-font-family: 'Arial Black';
+}
+.text {
+    -fx-text-fill: white;
+    -fx-font-weight:bold;
+    -fx-font-family: 'Arial Black';
+}
+
+
+#borderLogin {
+    -fx-text-fill: white;
+}
+#anchorLogin {
+    -fx-text-fill: white;
 }

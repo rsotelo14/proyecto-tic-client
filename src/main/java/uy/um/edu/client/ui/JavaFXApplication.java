@@ -32,6 +32,7 @@ public class JavaFXApplication extends Application  {
         root = fxmlLoader.load(JavaFXApplication.class.getResourceAsStream("usuario/LoginUser.fxml"));
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("usuario/style/appStyle.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("usuario/style/loginStyle.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
 
