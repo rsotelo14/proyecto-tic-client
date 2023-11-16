@@ -1,6 +1,8 @@
 package uy.um.edu.client.ui.usuario;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -49,6 +51,15 @@ public class AdministradorAeropuertoController {
 
     @FXML
     private TabPane tabPane;
+
+    @FXML
+    private Tab mostrarEmpleadosTab;
+
+    @FXML
+    private Tab asociarAerolineaTab;
+
+    @FXML
+    private Tab validarVueloTab;
 
     @FXML
     private TextField txtNombre;
@@ -115,6 +126,9 @@ public class AdministradorAeropuertoController {
 
     @FXML
     private ListView<String> aerolineasAsociadasListView;
+
+    @FXML
+    private Label noHayAerolineasLabel;
     private AdminAeropuerto adminAeropuerto;
     private Aeropuerto aeropuerto;
     private List<PuertaAeropuerto> puertas;
@@ -144,29 +158,38 @@ public class AdministradorAeropuertoController {
         this.puertas = puertasP;
         List<PistaAeropuerto> pistasP = (List<PistaAeropuerto>) aeropuertoService.obtenerPistas(aeropuerto);
         this.pistas = pistasP;
-        tabPane.getSelectionModel().selectedItemProperty().addListener((ov, oldTab, newTab) -> {
-            onTabSelectionChanged(newTab);
+        tabPane.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Tab>() {
+            @Override
+            public void changed(ObservableValue<? extends Tab> observable, Tab oldTab, Tab newTab) {
+                onTabSelectionChanged(newTab);
+            }
         });
+
+
 
     }
     @FXML
     public void onTabSelectionChanged(Tab tab){
-        if (tab.isSelected()){
-            if (tab.getText().equals("Mostrar Empleados")){
-                try {
-                    System.out.println("Mostrar empleados");
-                    mostrarUsuariosAction(null);
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-            }else if (tab.getText().equals("Asociar Aerolinea")){
-                mostrarAerolineasDisponiblesAction(null);
-                mostrarAerolineasAsociadasAction(null);
+        if (tab == mostrarEmpleadosTab){
+            try {
 
-            }else if (tab.getText().equals("Validar Vuelo")){
-                mostrarVuelosPendientesAction(null);
+                mostrarUsuariosAction(null);
+
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
+
         }
+        else if (tab == asociarAerolineaTab){
+            mostrarAerolineasDisponiblesAction(null);
+            mostrarAerolineasAsociadasAction(null);
+
+
+        } else if (tab == validarVueloTab) {
+            mostrarVuelosPendientesAction(null);
+
+        }
+
     }
 
     @FXML
@@ -277,8 +300,9 @@ public class AdministradorAeropuertoController {
         List<Aerolinea> aerolineasDisponibles = aeropuertoService.obtenerAerolineasDisponibles(aeropuerto);
         aerolineasObservable.addAll(aerolineasDisponibles);
         if (aerolineasDisponibles.size() == 0){
-            showAlert("No hay aerolineas disponibles", "No hay aerolineas disponibles para registrar");
-        }
+            //showAlert("No hay aerolineas disponibles", "No hay aerolineas disponibles para registrar");
+            noHayAerolineasLabel.setVisible(true);
+        }else {noHayAerolineasLabel.setVisible(false);}
         aerolineasDisponiblesListView.setCellFactory(param -> new ListCell<Aerolinea>() {
             @Override
             protected void updateItem(Aerolinea item, boolean empty) {
@@ -322,10 +346,16 @@ public class AdministradorAeropuertoController {
         for (Aerolinea aerolinea : aerolineasAsociadas)
             aerolineasObservable.add(aerolinea.getNombre());
         if (aerolineasAsociadas.size() == 0){
+
             showAlert("No hay aerolineas asociadas", "No hay aerolineas asociadas a este aeropuerto");
         }
 
         aerolineasAsociadasListView.setItems(aerolineasObservable);
+    }
+    @FXML
+    public void mostrarAerolineasAction(ActionEvent event){
+        mostrarAerolineasAsociadasAction(event);
+        mostrarAerolineasDisponiblesAction(event);
     }
 
     @FXML

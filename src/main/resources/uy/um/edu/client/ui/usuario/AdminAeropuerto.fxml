@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<TabPane  fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <tabs>
         <Tab text="Home">
             <content>
@@ -56,7 +56,7 @@
                 </AnchorPane>
             </content>
         </Tab>
-        <Tab text="Mostrar Empleados" >
+        <Tab fx:id="mostrarEmpleadosTab" text="Mostrar Empleados">
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                     <children>
@@ -91,23 +91,31 @@
                 </AnchorPane>
             </content>
         </Tab>
-        <Tab text="Asociar Aerolinea">
+        <Tab fx:id="asociarAerolineaTab" text="Asociar Aerolinea">
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                     <children>
                         <ListView id="aerolineasDisponiblesListView" fx:id="aerolineasDisponiblesListView" layoutX="50.0" layoutY="86.0" prefHeight="200.0" prefWidth="222.0" />
-                        <Button layoutX="70.0" layoutY="332.0" mnemonicParsing="false" onAction="#mostrarAerolineasDisponiblesAction" text="Mostrar Aerolineas Disponibles" />
+                        <Button layoutX="268.0" layoutY="332.0" mnemonicParsing="false" onAction="#mostrarAerolineasAction" text="Refrescar" />
                   <ListView id="aerolineasDisponiblesListView" fx:id="aerolineasAsociadasListView" layoutX="337.0" layoutY="86.0" prefHeight="200.0" prefWidth="222.0" />
-                  <Button layoutX="361.0" layoutY="332.0" mnemonicParsing="false" onAction="#mostrarAerolineasAsociadasAction" text="Mostrar Aerolineas Asociadas" />
+                  <Label layoutX="51.0" layoutY="63.0" text="Aerolineas Disponibles">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label layoutX="337.0" layoutY="63.0" text="Aeerolineas Asociadas">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label fx:id="noHayAerolineasLabel" alignment="CENTER" layoutX="30.0" layoutY="147.0" prefHeight="64.0" prefWidth="271.0" text="No hay aerolineas &#10;disponibles para asociar" visible="false" />
 
                     </children></AnchorPane>
             </content>
         </Tab>
-        <Tab text="Validar Vuelo">
+        <Tab fx:id="validarVueloTab" text="Validar Vuelo">
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                     <ListView fx:id="vuelosListView" layoutX="88.0" layoutY="28.0" prefHeight="273.0" prefWidth="422.0" visible="false" />
-                    <Button layoutX="241.0" layoutY="332.0" mnemonicParsing="false" onAction="#mostrarVuelosPendientesAction" text="Mostrar Vuelos" />
+                    <Button layoutX="268.0" layoutY="332.0" mnemonicParsing="false" onAction="#mostrarVuelosPendientesAction" text="Refrescar" />
 
                 </AnchorPane>
             </content>

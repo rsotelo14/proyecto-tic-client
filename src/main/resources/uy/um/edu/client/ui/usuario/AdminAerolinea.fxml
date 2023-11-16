@@ -6,7 +6,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TabPane prefHeight="400.0" prefWidth="592.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tabPane" prefHeight="400.0" prefWidth="592.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Home">
             <content>
@@ -198,12 +198,12 @@
                   </AnchorPane>
                </content>
           </Tab>
-            <Tab text="Aeropuertos Asociados">
+            <Tab fx:id="aeropuertosAsociadosTab" text="Aeropuertos Asociados">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <ListView fx:id="aeropuertosAsociadosListView" layoutX="196.0" layoutY="86.0" prefHeight="200.0" prefWidth="200.0" />
-                        <Button layoutX="204.0" layoutY="302.0" mnemonicParsing="false" onAction="#mostrarAeropuertosAsociadosAction" text="Mostrar Aeropuertos Asociados" />
+                        <Button layoutX="264.0" layoutY="305.0" mnemonicParsing="false" onAction="#mostrarAeropuertosAsociadosAction" text="Refrescar" />
                      </children>
                   </AnchorPane>
               </content>
