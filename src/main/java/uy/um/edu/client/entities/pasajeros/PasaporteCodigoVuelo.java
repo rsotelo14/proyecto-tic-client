@@ -3,6 +3,8 @@ package uy.um.edu.client.entities.pasajeros;
 public class PasaporteCodigoVuelo {
     private String pasaporte;
     private String codigoVuelo;
+
+    private Integer cantidadValijas;
     public PasaporteCodigoVuelo() {
     }
 
@@ -20,5 +22,13 @@ public class PasaporteCodigoVuelo {
 
     public void setCodigoVuelo(String codigoVuelo) {
         this.codigoVuelo = codigoVuelo;
+    }
+
+    public void setCantidadValijas(Integer value) {
+        this.cantidadValijas = value;
+    }
+
+    public Integer getCantidadValijas() {
+        return cantidadValijas;
     }
 }

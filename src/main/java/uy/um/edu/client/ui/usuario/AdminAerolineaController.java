@@ -18,6 +18,7 @@ import uy.um.edu.client.entities.vuelos.Asientos;
 import uy.um.edu.client.entities.vuelos.Avion;
 import uy.um.edu.client.entities.vuelos.EstadoVuelo;
 import uy.um.edu.client.entities.vuelos.Vuelo;
+import uy.um.edu.client.exceptions.EntidadNoExiste;
 import uy.um.edu.client.exceptions.EntidadYaExiste;
 import uy.um.edu.client.exceptions.InvalidInformation;
 import uy.um.edu.client.services.*;
@@ -111,6 +112,14 @@ public class AdminAerolineaController {
     private TextField txtAgregarPasaporte;
     @FXML
     private TextField txtCodigoVueloPasajero;
+
+    @FXML
+    private TextField txtCheckInPasaporte;
+
+    @FXML
+    private ChoiceBox<Integer> cantidadValijas;
+    @FXML
+    private TextField txtCheckInCodigoVuelo;
     private AdminAerolinea adminAerolinea;
     private Aerolinea aerolinea;
     private List<Aeropuerto> aeropuertosAsociados;
@@ -144,6 +153,9 @@ public class AdminAerolineaController {
         }
         horaLlegadaMinutos.setItems(minutos);
         horaSalidaMinutos.setItems(minutos);
+
+        cantidadValijas.getItems().addAll(0,1,2,3);
+        cantidadValijas.setValue(0);
 
     }
     @FXML
@@ -207,23 +219,16 @@ public class AdminAerolineaController {
         vuelo.setAvion(avion);
         vuelo.setEstado(EstadoVuelo.PENDIENTE);
         int numeroCapacidad=0;
-        if (esNumero(capacidad)){
-            if (Integer.valueOf(capacidad) > avion.getCapacidad()){
-                showAlert("Error", "La capacidad del vuelo no puede ser mayor a la capacidad del avion.");
-                return;
-            }
-        }else{numeroCapacidad=Integer.valueOf(capacidad);
+        if (!esNumero(capacidad)){
+            showAlert("Error", "La capacidad del vuelo debe ser un número.");
         }
-        List<Asientos> listaAsientos =new ArrayList<Asientos>();
-        for (int i=0;i<numeroCapacidad;i++){
-            Asientos asiento = new Asientos();
-            asiento.setVuelo(vuelo);
-            asiento.setCheckIn(false);
-            asiento.setBoarding(false);
-            listaAsientos.add(asiento);
+        if (Integer.valueOf(capacidad) > avion.getCapacidad()){
+            showAlert("Error", "La capacidad del vuelo no puede ser mayor a la capacidad del avion.");
+            return;
+        }
+        numeroCapacidad = Integer.valueOf(capacidad);
 
-        }
-        vuelo.setAsientos(listaAsientos);
+        vuelo.setCapacidadMaxima(Long.valueOf(numeroCapacidad));
 
         //guardar en la base de datos
         try {
@@ -348,10 +353,45 @@ public class AdminAerolineaController {
         try {
             pasajeroService.enviarPasaporteCodigoVuelo(pasaporteCodigoVuelo);
         } catch (EntidadYaExiste e) {
-            throw new RuntimeException(e);
+            showAlert(
+                    "Pasajero ya asociado !",
+                    "El pasajero ya está asociado al vuelo");
+        } catch (EntidadNoExiste e){
+            showAlert(
+                    "Pasajero no existe !",
+                    "El pasajero no existe");
         }
-        showAlert("Pasaporte enviado", "El pasaporte se ha enviado correctamente.");
+        showAlert("Pasajero asociado", "El pasajero se ha asociado al vuelo correctamente.");
         limpiarCampos();
+    }
+
+    @FXML
+    public void checkIn(ActionEvent event) {
+        if (txtCheckInPasaporte.getText().equals("") || txtCheckInCodigoVuelo.getText().equals("")) {
+            showAlert("Datos faltantes!",
+                    "No se ingresaron los datos necesarios para completar el check-in.");
+            return;
+        }
+        String pasaporte = this.txtCheckInPasaporte.getText();
+        String codigoVuelo = this.txtCheckInCodigoVuelo.getText();
+        PasaporteCodigoVuelo pasaporteCodigoVuelo = new PasaporteCodigoVuelo();
+        pasaporteCodigoVuelo.setPasaporte(pasaporte);
+        pasaporteCodigoVuelo.setCodigoVuelo(codigoVuelo);
+        pasaporteCodigoVuelo.setCantidadValijas(cantidadValijas.getValue());
+        try {
+            pasajeroService.checkIn(pasaporteCodigoVuelo);
+            showAlert("Check In", "Se hizo el Check In correctamente");
+            limpiarCampos();
+        } catch (EntidadYaExiste e) {
+            showAlert(
+                    "Pasajero ya hizo check in !",
+                    "El pasajero ya hizo check in");
+        } catch (EntidadNoExiste e){
+            showAlert(
+                    "Entidad no existe !",
+                    e.getMessage());
+        }
+
     }
 
 
