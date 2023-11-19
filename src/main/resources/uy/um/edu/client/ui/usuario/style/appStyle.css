@@ -17,6 +17,16 @@
 
 }
 
+.combo-box {
+    -fx-text-fill: black; /* Cambia el color del texto a negro */
+}
+.list-cell{
+    -fx-text-fill: black;
+}
+
+.choice-box{
+    -fx-text-fill: black;
+}
 
 
 #borderLogin {

@@ -1,20 +1,44 @@
 .tab {
     -fx-background-color: #f9f9f9;
 }
+.root {
+    -fx-background-color: linear-gradient(to right bottom, #3A77FF, #74E6DE );
 
+
+
+
+}
 .label {
     -fx-text-fill: white;
-    -fx-font-weight: bold;
+
+
+
+}
+.text {
+    -fx-text-fill: white;
 
 
 }
 
+.combo-box {
+    -fx-text-fill: black; /* Cambia el color del texto a negro */
+}
+.list-cell{
+    -fx-text-fill: black;
+}
+
+.choice-box{
+    -fx-text-fill: black;
+}
+
+
+
 /* Style the buttons inside the tab */
-.tab .button {
+.button {
     -fx-background-color: transparent;
-    -fx-padding: 14px 16px;
-    -fx-font-size: 17px;
-    -fx-text-fill: black; /* Se asume que quieres el texto en negro */
+    /* -fx-padding: 14px 16px;*/
+     -fx-font-size: 17px;
+     -fx-text-fill: black; /* Se asume que quieres el texto en negro */
 }
 
 /* Change background color of buttons on hover */
@@ -23,18 +47,14 @@
 }
 
 /* Create an active/current tablink class */
-.tab .button:pressed, .tab .button:focused {
-    -fx-background-color: #e7e7e7;
-    -fx-font-style: regular;
-}
+
 
 .button {
     -fx-background-color: #ffffff; /* Blanco para un look limpio */
     -fx-text-fill: #000000; /* Texto en negro para contraste */
     -fx-border-color: #dddddd; /* Borde sutil */
     -fx-border-width: 1px; /* Ancho del borde */
-    -fx-padding: 10px 20px; /* Espaciado interno adecuado */
-    -fx-font-size: 16px; /* Tamaño de fuente legible */
+    /*-fx-padding: 10px 20px; /* Espaciado interno adecuado */
     -fx-cursor: hand; /* Cambia el cursor a una mano cuando se pasa por encima */
 }
 
@@ -43,11 +63,7 @@
 }
 
 /* Style the tab content */
-.tabcontent {
-    -fx-display: none; /
-    -fx-padding: 6px 12px;
 
-}
 
 #noHayAerolineasLabel {
     -fx-text-fill: black;
@@ -56,10 +72,7 @@
     -fx-font-size: 14px;
 }
 
-#homeTab{
-    -fx-font-size: 30px;
-    -fx-font-weight: regular;
-}
+
 .table-view .column-header-background .label {
     -fx-background-color: #1e3d7b; /* Cambia este color al tono de azul oscuro que prefieras */
     -fx-text-fill: white; /* Cambia el color del texto a blanco para mejor contraste */
