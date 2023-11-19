@@ -6,12 +6,12 @@
 .label {
     -fx-text-fill: white;
     -fx-font-weight:bold;
-    -fx-font-family: 'Arial Black';
+    -fx-font-family: 'Supr';
 }
 .text {
     -fx-text-fill: white;
     -fx-font-weight:bold;
-    -fx-font-family: 'Arial Black';
+    -fx-font-family: 'Arial';
 }
 
 
