@@ -1,6 +1,8 @@
 .root {
     -fx-background-color: linear-gradient(to right bottom, #3A77FF, #74E6DE );
     -fx-text-fill: white;
+    -fx-font-family: 'Open Sans';
+    -fx-font-size:14px ;
 
 }
 .label {
@@ -15,6 +17,7 @@
     -fx-font-family: 'Open Sans';
     -fx-font-size:14px ;
 }
+
 
 
 #borderLogin {

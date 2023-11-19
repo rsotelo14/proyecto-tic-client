@@ -34,6 +34,7 @@ public class JavaFXApplication extends Application  {
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("usuario/style/appStyle.css").toExternalForm());
         scene.getStylesheets().add(getClass().getResource("usuario/style/loginStyle.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("usuario/style/adminStyle.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
         Font.loadFont(getClass().getResourceAsStream("usuario/fonts/OpenSans-Regular.ttf"), 14);
