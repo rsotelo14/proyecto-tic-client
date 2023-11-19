@@ -4,7 +4,7 @@
 
 .label {
     -fx-text-fill: white;
-    -fx-font-size: 14px;
+
 }
 
 /* Style the buttons inside the tab */
@@ -23,6 +23,7 @@
 /* Create an active/current tablink class */
 .tab .button:pressed, .tab .button:focused {
     -fx-background-color: #e7e7e7;
+    -fx-font-style: regular;
 }
 
 .button {
@@ -53,8 +54,7 @@
     -fx-font-size: 14px;
 }
 
-#bienvenidoLabel{
-
+#bienvenidoLabel,#nombreAeropuertoLabel,#nombreAdminLabel,#aeropuertoLabel{
     -fx-font-size: 30px;
 }
 .table-view .column-header-background .label {
