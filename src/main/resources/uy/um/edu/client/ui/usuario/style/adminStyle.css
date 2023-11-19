@@ -4,6 +4,8 @@
 
 .label {
     -fx-text-fill: white;
+    -fx-font-weight: bold;
+
 
 }
 
@@ -42,22 +44,24 @@
 
 /* Style the tab content */
 .tabcontent {
-    -fx-display: none; /* Esta propiedad no existe en JavaFX, tendrás que controlar la visibilidad con Java */
+    -fx-display: none; /
     -fx-padding: 6px 12px;
-    /* No hay una propiedad directa de JavaFX para border-top none, tendrías que configurar los bordes individualmente */
+
 }
 
 #noHayAerolineasLabel {
     -fx-text-fill: black;
-    -fx-font-weight: bold;
+
 
     -fx-font-size: 14px;
 }
 
-#bienvenidoLabel,#nombreAeropuertoLabel,#nombreAdminLabel,#aeropuertoLabel{
+#homeTab{
     -fx-font-size: 30px;
+    -fx-font-weight: regular;
 }
 .table-view .column-header-background .label {
     -fx-background-color: #1e3d7b; /* Cambia este color al tono de azul oscuro que prefieras */
     -fx-text-fill: white; /* Cambia el color del texto a blanco para mejor contraste */
 }
+

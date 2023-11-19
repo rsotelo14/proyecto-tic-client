@@ -7,28 +7,28 @@
 
 <TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="437.0" prefWidth="600.0" stylesheets="@/uy/um/edu/client/ui/usuario/style/appStyle.css, @/uy/um/edu/client/ui/usuario/style/adminStyle.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <tabs>
-        <Tab text="Home">
+        <Tab fx:id="homeTab" text="Inicio">
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                     <children>
                         <Label fx:id="bienvenidoLabel" layoutX="42.0" layoutY="198.0" text="Bienvenido">
                             <font>
-                                <Font name="Open Sans" size="30" />
+                                <Font size="25" />
                             </font>
                         </Label>
                         <Label fx:id="nombreAdminLabel" layoutX="42.0" layoutY="246.0" text="Nombre">
                             <font>
-                                <Font size="40" />
+                                <Font size="25" />
                             </font>
                         </Label>
                         <Label fx:id="aeropuertoLabel" layoutX="42.0" layoutY="42.0" text="Aeropuerto:">
                             <font>
-                                <Font size="30.0" />
+                                <Font size="25" />
                             </font>
                         </Label>
                         <Label fx:id="nombreAeropuertoLabel" layoutX="42.0" layoutY="73.0" text="Nombre Aeropuerto">
                             <font>
-                                <Font size="30.0" />
+                                <Font size="25" />
                             </font>
                         </Label>
                   <ImageView fitHeight="489.0" fitWidth="301.0" layoutX="391.0" layoutY="-47.0" pickOnBounds="true" preserveRatio="true">
@@ -44,8 +44,14 @@
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                     <children>
-                        <Label layoutX="19.0" layoutY="42.0" text="Nombre" />
-                        <Label layoutX="19.0" layoutY="82.0" text="Apellido" />
+                        <Label layoutX="19.0" layoutY="42.0" text="Nombre">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                        <Label layoutX="19.0" layoutY="82.0" text="Apellido">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
                         <Label layoutX="19.0" layoutY="119.0" text="Correo" />
                         <Label layoutX="19.0" layoutY="158.0" text="Contraseña" />
                         <Label layoutX="19.0" layoutY="196.0" text="Pasaporte" />
