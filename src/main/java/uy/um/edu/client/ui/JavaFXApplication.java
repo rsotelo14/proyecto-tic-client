@@ -37,9 +37,7 @@ public class JavaFXApplication extends Application  {
         scene.getStylesheets().add(getClass().getResource("usuario/style/adminStyle.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
-        Font.loadFont(getClass().getResourceAsStream("usuario/fonts/OpenSans-Regular.ttf"), 14);
-        Font.loadFont(getClass().getResourceAsStream("usuario/fonts/OpenSans-Regular.ttf"), 30);
-        Font.loadFont(getClass().getResourceAsStream("usuario/fonts/OpenSans-Semibold.ttf"), 14);
+
     }
 
     @Override

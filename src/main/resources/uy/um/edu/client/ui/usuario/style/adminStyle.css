@@ -4,7 +4,6 @@
 
 .label {
     -fx-text-fill: white;
-    -fx-font-family: 'Open Sans Semibold';
     -fx-font-size: 14px;
 }
 
@@ -50,12 +49,12 @@
 #noHayAerolineasLabel {
     -fx-text-fill: black;
     -fx-font-weight: bold;
-    -fx-font-family: 'Open Sans';
+
     -fx-font-size: 14px;
 }
 
 #bienvenidoLabel{
-    -fx-font-family: 'Open Sans';
+
     -fx-font-size: 30px;
 }
 .table-view .column-header-background .label {
