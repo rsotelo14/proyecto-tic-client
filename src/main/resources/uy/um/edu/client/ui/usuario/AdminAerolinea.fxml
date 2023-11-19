@@ -223,6 +223,63 @@
               </content>
 
             </Tab>
+            <Tab text="Agregar Pasajeros">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="54.0" layoutY="53.0" />
+                        <Label layoutX="44.0" layoutY="45.0" prefHeight="21.0" prefWidth="74.0" text="Pasaporte">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtAgregarPasaporte" layoutX="134.0" layoutY="43.0" />
+                        <Label layoutX="36.0" layoutY="84.0" text="Codigo Vuelo">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtCodigoVueloPasajero" layoutX="134.0" layoutY="82.0" />
+                        <Button layoutX="378.0" layoutY="281.0" mnemonicParsing="false" onAction="#asignarPasajero" prefHeight="44.0" prefWidth="146.0" text="Asignar pasajero">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab><Tab text="Check In">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="54.0" layoutY="53.0" />
+                        <Label layoutX="44.0" layoutY="45.0" prefHeight="21.0" prefWidth="74.0" text="Pasaporte">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtCheckInPasaporte" layoutX="134.0" layoutY="43.0" />
+                        <Label layoutX="36.0" layoutY="84.0" text="Codigo Vuelo">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtCheckInCodigoVuelo" layoutX="134.0" layoutY="82.0" />
+                        <Button layoutX="378.0" layoutY="281.0" mnemonicParsing="false" onAction="#checkIn" prefHeight="44.0" prefWidth="146.0" text="Check In">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="36.0" layoutY="127.0" text="Cantidad de Valijas">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ChoiceBox fx:id="cantidadValijas" layoutX="184.0" layoutY="125.0" prefHeight="26.0" prefWidth="99.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
         </tabs>
       </TabPane>
 
