@@ -1,5 +1,6 @@
 package uy.um.edu.client.ui.usuario;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -169,16 +170,20 @@ public class AdminAerolineaController {
                 onTabSelectionChanged(newTab);
             }
         });
-        choiceBoxAeropuertoDestino.setStyle("-fx-text-fill: black");
-        choiceBoxAeropuertoOrigen.setStyle("-fx-text-fill: black");
-        choiceBoxAvion.setStyle("-fx-text-fill: black");
-        cantidadValijas.setStyle("-fx-text-fill: black");
-        horaLlegadaHoras.setStyle("-fx-text-fill: black");
-        horaLlegadaMinutos.setStyle("-fx-text-fill: black");
-        horaSalidaHoras.setStyle("-fx-text-fill: black");
+        Platform.runLater(() -> {
+            choiceBoxAeropuertoDestino.setStyle("-fx-text-fill: black");
+            choiceBoxAeropuertoOrigen.setStyle("-fx-text-fill: black");
+            choiceBoxAvion.setStyle("-fx-text-fill: black");
+            cantidadValijas.setStyle("-fx-text-fill: black");
+            horaLlegadaHoras.setStyle("-fx-text-fill: black");
+            horaLlegadaMinutos.setStyle("-fx-text-fill: black");
+            horaSalidaHoras.setStyle("-fx-text-fill: black");
+
+        });
 
 
     }
+
     public void onTabSelectionChanged(Tab tab){
         if (tab == aeropuertosAsociadosTab){
             mostrarAeropuertosAsociadosAction(null);

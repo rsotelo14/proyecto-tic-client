@@ -9,27 +9,17 @@
 
 }
 .label {
-    -fx-text-fill: white;
+    -fx-text-fill: white;}
 
 
 
-}
-.text {
-    -fx-text-fill: white;
 
 
-}
-
-.combo-box {
-    -fx-text-fill: black; /* Cambia el color del texto a negro */
-}
-
-.list-cell{
+.choice-box {
     -fx-text-fill: black;
 }
-
-.choice-box{
-    -fx-text-fill: black;
+.choice-box .list-cell {
+    -fx-text-fill: black; /* Text color for the dropdown items */
 }
 
 
