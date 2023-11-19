@@ -4,7 +4,7 @@
 <?import javafx.scene.text.*?>
 
 
-<BorderPane stylesheets="@style/appStyle.css,@style/adminStyle.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" >
+<BorderPane stylesheets="@/uy/um/edu/client/ui/usuario/style/appStyle.css, @/uy/um/edu/client/ui/usuario/style/adminStyle.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" >
    <center>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Maletero" y="500.0" BorderPane.alignment="CENTER">
          <font>

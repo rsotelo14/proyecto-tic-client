@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@style/appStyle.css,@style/adminStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@/uy/um/edu/client/ui/usuario/style/appStyle.css, @/uy/um/edu/client/ui/usuario/style/adminStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="17.0" layoutY="27.0" prefHeight="35.0" prefWidth="153.0" text="Validar Vuelo:">
          <font>
