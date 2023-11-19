@@ -1,4 +1,5 @@
 package uy.um.edu.client.entities.vuelos;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import uy.um.edu.client.entities.aerolinea.Aerolinea;
 import uy.um.edu.client.entities.aeropuerto.Aeropuerto;
 import uy.um.edu.client.entities.aeropuerto.PuertaAeropuerto;
@@ -32,6 +33,7 @@ public class Vuelo {
     private EstadoVuelo estado;
 
     private Avion avion;
+    @JsonIgnore
     private List<Asientos> asientos;
     public Vuelo() {
     }
