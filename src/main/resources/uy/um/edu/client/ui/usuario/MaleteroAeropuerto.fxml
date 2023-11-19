@@ -4,7 +4,7 @@
 <?import javafx.scene.text.*?>
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.usuario.MaleteroController">
+<BorderPane stylesheets="@style/appStyle.css,@style/adminStyle.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" >
    <center>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Maletero" y="500.0" BorderPane.alignment="CENTER">
          <font>

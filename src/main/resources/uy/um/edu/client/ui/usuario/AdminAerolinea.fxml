@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@style/appStyle.css, @style/adminStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-   <children>adm
+   <children>
       <TabPane fx:id="tabPane" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Home">
@@ -62,13 +62,13 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtCodigoVuelo" layoutX="166.0" layoutY="35.0" prefHeight="25.0" prefWidth="113.0" />
-                        <Label layoutX="13.0" layoutY="37.0" text="Código vuelo">
+                        <TextField fx:id="txtCodigoVuelo" layoutX="166.0" layoutY="35.0" prefHeight="30.0" prefWidth="133.0" />
+                        <Label layoutX="11.0" layoutY="37.0" text="Código vuelo">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label layoutX="12.0" layoutY="75.0" text="Aeropuerto origen">
+                        <Label layoutX="11.0" layoutY="75.0" text="Aeropuerto origen">
                            <font>
                               <Font size="15.0" />
                            </font></Label>
@@ -80,15 +80,15 @@
                            <font>
                               <Font size="15.0" />
                            </font></Label>
-                        <Label layoutX="10.0" layoutY="208.0" text="Hora llegada estimada">
+                        <Label layoutX="11.0" layoutY="208.0" text="Hora llegada estimada">
                            <font>
                               <Font size="15.0" />
                            </font></Label>
-                        <Label layoutX="10.0" layoutY="249.0" text="Fecha salida">
+                        <Label layoutX="11.0" layoutY="249.0" text="Fecha salida">
                            <font>
                               <Font size="15.0" />
                            </font></Label>
-                        <Label layoutX="10.0" layoutY="292.0" text="Fecha llegada">
+                        <Label layoutX="11.0" layoutY="292.0" text="Fecha llegada">
                            <font>
                               <Font size="15.0" />
                            </font></Label>
@@ -107,16 +107,16 @@
                               <Font size="15.0" />
                            </font>
                         </Button>
-                        <ChoiceBox fx:id="choiceBoxAeropuertoOrigen" layoutX="166.0" layoutY="73.0" prefWidth="150.0" />
-                        <ChoiceBox fx:id="choiceBoxAeropuertoDestino" layoutX="166.0" layoutY="116.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="choiceBoxAeropuertoOrigen" layoutX="166.0" layoutY="73.0" prefHeight="30.0" prefWidth="133.0" />
+                        <ChoiceBox fx:id="choiceBoxAeropuertoDestino" layoutX="166.0" layoutY="116.0" prefHeight="30.0" prefWidth="134.0" />
 
                         <ChoiceBox fx:id="choiceBoxAvion" layoutX="429.0" layoutY="206.0" prefWidth="150.0" />
                         <ChoiceBox fx:id="horaSalidaHoras" layoutX="166.0" layoutY="161.0" prefHeight="26.0" prefWidth="59.0" />
                         <ChoiceBox fx:id="horaSalidaMinutos" layoutX="241.0" layoutY="161.0" prefHeight="26.0" prefWidth="59.0" />
                         <ChoiceBox fx:id="horaLlegadaHoras" layoutX="166.0" layoutY="205.0" prefHeight="26.0" prefWidth="59.0" />
                         <ChoiceBox fx:id="horaLlegadaMinutos" layoutX="241.0" layoutY="205.0" prefHeight="26.0" prefWidth="59.0" />
-                        <DatePicker fx:id="fechaSalidaDate" editable="false" layoutX="166.0" layoutY="247.0" prefHeight="26.0" prefWidth="161.0" />
-                        <DatePicker fx:id="fechaLlegadaDate" editable="false" layoutX="166.0" layoutY="289.0" prefHeight="26.0" prefWidth="161.0" />
+                        <DatePicker fx:id="fechaSalidaDate" editable="false" layoutX="166.0" layoutY="247.0" prefHeight="30.0" prefWidth="167.0" />
+                        <DatePicker fx:id="fechaLlegadaDate" editable="false" layoutX="166.0" layoutY="289.0" prefHeight="30.0" prefWidth="167.0" />
 
                      </children></AnchorPane>
             </content>
@@ -125,10 +125,10 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="txtCodigoAvion" layoutX="164.0" layoutY="38.0" prefHeight="30.0" prefWidth="138.0" />
-                        <TextField fx:id="txtNombreAvion" layoutX="167.0" layoutY="125.0" prefHeight="30.0" prefWidth="138.0" />
-                        <TextField fx:id="txtTipoAvion" layoutX="165.0" layoutY="173.0" prefHeight="30.0" prefWidth="140.0" />
-                        <TextField fx:id="txtCapacidadBultoAvion" layoutX="166.0" layoutY="217.0" prefHeight="30.0" prefWidth="139.0" />
+                        <TextField fx:id="txtCodigoAvion" layoutX="167.0" layoutY="38.0" prefHeight="30.0" prefWidth="135.0" />
+                        <TextField fx:id="txtNombreAvion" layoutX="167.0" layoutY="125.0" prefHeight="30.0" prefWidth="135.0" />
+                        <TextField fx:id="txtTipoAvion" layoutX="167.0" layoutY="173.0" prefHeight="30.0" prefWidth="136.0" />
+                        <TextField fx:id="txtCapacidadBultoAvion" layoutX="167.0" layoutY="217.0" prefHeight="30.0" prefWidth="135.0" />
                         <Label layoutX="14.0" layoutY="40.0" text="Codigo Avion">
                            <font>
                               <Font size="15.0" />
@@ -139,18 +139,18 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label layoutX="13.0" layoutY="178.0" text="Tipo Avion">
+                        <Label layoutX="14.0" layoutY="178.0" text="Tipo Avion">
                            <font>
-                              <Font size="15.0" />
+                              <Font size="14.0" />
                            </font>
                         </Label>
                         <Label layoutX="14.0" layoutY="222.0" text="Capacidad Bulto">
                            <font>
-                              <Font size="15.0" />
+                              <Font size="14.0" />
                            </font>
                         </Label>
                         <TextField fx:id="txtCapacidadAsientosAvion" layoutX="167.0" layoutY="81.0" prefHeight="30.0" prefWidth="135.0" />
-                        <Label layoutX="13.0" layoutY="82.0" prefHeight="22.0" prefWidth="144.0" text="Capacidad Asientos" textAlignment="CENTER">
+                        <Label layoutX="14.0" layoutY="82.0" prefHeight="22.0" prefWidth="144.0" text="Capacidad Asientos" textAlignment="CENTER">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -168,8 +168,8 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="txtNombrePasajero" layoutX="163.0" layoutY="35.0" prefHeight="30.0" prefWidth="121.0" />
-                        <TextField fx:id="txtCorreoPasajero" layoutX="167.0" layoutY="125.0" prefHeight="30.0" prefWidth="118.0" />
+                        <TextField fx:id="txtNombrePasajero" layoutX="166.0" layoutY="35.0" prefHeight="30.0" prefWidth="118.0" />
+                        <TextField fx:id="txtCorreoPasajero" layoutX="166.0" layoutY="125.0" prefHeight="30.0" prefWidth="120.0" />
                         <Label layoutX="32.0" layoutY="40.0" text="Nombre">
                            <font>
                               <Font size="15.0" />
@@ -185,7 +185,7 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtApellidoPasajero" layoutX="166.0" layoutY="82.0" prefHeight="30.0" prefWidth="118.0" />
+                        <TextField fx:id="txtApellidoPasajero" layoutX="166.0" layoutY="82.0" prefHeight="30.0" prefWidth="119.0" />
                         <Label layoutX="31.0" layoutY="83.0" prefHeight="22.0" prefWidth="64.0" text="Apellido" textAlignment="CENTER">
                            <font>
                               <Font size="15.0" />
@@ -196,18 +196,18 @@
                               <Font size="15.0" />
                            </font>
                         </Button>
-                        <Label layoutX="30.0" layoutY="167.0" text="Contraseña">
+                        <Label layoutX="32.0" layoutY="167.0" text="Contraseña">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtContraseñaPasajero" layoutX="165.0" layoutY="167.0" prefHeight="30.0" prefWidth="119.0" />
+                        <TextField fx:id="txtContraseñaPasajero" layoutX="167.0" layoutY="167.0" prefHeight="30.0" prefWidth="120.0" />
                         <Label layoutX="32.0" layoutY="219.0" text="Pasaporte">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtPasaporte" layoutX="165.0" layoutY="214.0" prefHeight="30.0" prefWidth="119.0" />
+                        <TextField fx:id="txtPasaporte" layoutX="167.0" layoutY="214.0" prefHeight="30.0" prefWidth="121.0" />
                      </children>
                   </AnchorPane>
                </content>
