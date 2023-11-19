@@ -4,8 +4,7 @@
 
 .label {
     -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-font-family: 'Open Sans';
+    -fx-font-family: 'Open Sans Semibold';
     -fx-font-size: 14px;
 }
 
@@ -53,4 +52,13 @@
     -fx-font-weight: bold;
     -fx-font-family: 'Open Sans';
     -fx-font-size: 14px;
+}
+
+#bienvenidoLabel{
+    -fx-font-family: 'Open Sans';
+    -fx-font-size: 30px;
+}
+.table-view .column-header-background .label {
+    -fx-background-color: #1e3d7b; /* Cambia este color al tono de azul oscuro que prefieras */
+    -fx-text-fill: white; /* Cambia el color del texto a blanco para mejor contraste */
 }

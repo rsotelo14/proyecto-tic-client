@@ -38,7 +38,8 @@ public class JavaFXApplication extends Application  {
         primaryStage.setScene(scene);
         primaryStage.show();
         Font.loadFont(getClass().getResourceAsStream("usuario/fonts/OpenSans-Regular.ttf"), 14);
-
+        Font.loadFont(getClass().getResourceAsStream("usuario/fonts/OpenSans-Regular.ttf"), 30);
+        Font.loadFont(getClass().getResourceAsStream("usuario/fonts/OpenSans-Semibold.ttf"), 14);
     }
 
     @Override
