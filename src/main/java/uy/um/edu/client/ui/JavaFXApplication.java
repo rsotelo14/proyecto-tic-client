@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import uy.um.edu.client.ClientApplication;
 
@@ -35,6 +36,7 @@ public class JavaFXApplication extends Application  {
         scene.getStylesheets().add(getClass().getResource("usuario/style/loginStyle.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
+        Font.loadFont(getClass().getResourceAsStream("usuario/fonts/OpenSans-Regular.ttf"), 14);
 
     }
 

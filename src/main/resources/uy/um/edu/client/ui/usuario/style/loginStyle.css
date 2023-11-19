@@ -19,7 +19,7 @@
     -fx-border-radius: 15; /* Rounded corners for the border */
     -fx-background-radius: 15; /* Rounded corners for the background */
     -fx-padding: 5 10 5 10; /* Adjust padding for text inside the text field */
-    -fx-text-fill: linear-gradient(to right bottom, #74E6DE 3% , #3A77FF);
+    -fx-text-fill:   #3A77FF;
 
 }
 

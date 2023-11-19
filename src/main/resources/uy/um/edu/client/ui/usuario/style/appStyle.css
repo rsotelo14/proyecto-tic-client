@@ -6,12 +6,14 @@
 .label {
     -fx-text-fill: white;
     -fx-font-weight:bold;
-    -fx-font-family: 'Supr';
+    -fx-font-family: 'Open Sans';
+    -fx-font-size:14px ;
 }
 .text {
     -fx-text-fill: white;
     -fx-font-weight:bold;
-    -fx-font-family: 'Arial';
+    -fx-font-family: 'Open Sans';
+    -fx-font-size:14px ;
 }
 
 
