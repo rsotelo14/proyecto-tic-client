@@ -129,6 +129,12 @@ public class AdministradorAeropuertoController {
 
     @FXML
     private Label noHayAerolineasLabel;
+
+    @FXML
+    private Label noHayAerolineasLabel1;
+
+    @FXML
+    private Label noHayVuelosLabel;
     private AdminAeropuerto adminAeropuerto;
     private Aeropuerto aeropuerto;
     private List<PuertaAeropuerto> puertas;
@@ -313,7 +319,10 @@ public class AdministradorAeropuertoController {
                 } else {
                     HBox hbox = new HBox(10); // Espaciado entre elementos
                     Label label = new Label(item.getNombre());
+                    label.setStyle("-fx-text-fill: black; -fx-font-size: 12px;");
                     Button asociarBtn = new Button("Asociar");
+                    asociarBtn.setStyle("-fx-padding: 5px 10px; -fx-font-size: 12px;");
+                    asociarBtn.setPrefSize(80, 20);
 
                     asociarBtn.setOnAction(e -> {
                         // Lógica para asociar la aerolinea
@@ -346,9 +355,9 @@ public class AdministradorAeropuertoController {
         for (Aerolinea aerolinea : aerolineasAsociadas)
             aerolineasObservable.add(aerolinea.getNombre());
         if (aerolineasAsociadas.size() == 0){
-
-            showAlert("No hay aerolineas asociadas", "No hay aerolineas asociadas a este aeropuerto");
-        }
+            noHayAerolineasLabel1.setVisible(true);
+            //showAlert("No hay aerolineas asociadas", "No hay aerolineas asociadas a este aeropuerto");
+        } else {noHayAerolineasLabel1.setVisible(false);}
 
         aerolineasAsociadasListView.setItems(aerolineasObservable);
     }
@@ -366,6 +375,11 @@ public class AdministradorAeropuertoController {
         for (Vuelo vuelo: vuelosIterable){
             vuelos.add(vuelo);
             System.out.println(vuelo.getCodigoVuelo());
+        }
+        if (vuelos.size()==0){
+            noHayVuelosLabel.setVisible(true);
+        } else {noHayVuelosLabel.setVisible(false);
+
         }
         vuelosListView.setItems(vuelos);
 
