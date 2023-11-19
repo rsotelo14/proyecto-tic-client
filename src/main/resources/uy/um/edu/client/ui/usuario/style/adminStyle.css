@@ -1,0 +1,63 @@
+.tab {
+    -fx-background-color: #f9f9f9;
+}
+
+.label {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+/* Style the buttons inside the tab */
+.tab .button {
+    -fx-background-color: transparent;
+    -fx-padding: 14px 16px;
+    -fx-font-size: 17px;
+    -fx-text-fill: black; /* Se asume que quieres el texto en negro */
+}
+
+/* Change background color of buttons on hover */
+.tab .button:hover {
+    -fx-background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab .button:pressed, .tab .button:focused {
+    -fx-background-color: #e7e7e7;
+}
+
+.button {
+    -fx-background-color: #ffffff; /* Blanco para un look limpio */
+    -fx-text-fill: #000000; /* Texto en negro para contraste */
+    -fx-border-color: #dddddd; /* Borde sutil */
+    -fx-border-width: 1px; /* Ancho del borde */
+    -fx-padding: 10px 20px; /* Espaciado interno adecuado */
+    -fx-font-size: 16px; /* Tamaño de fuente legible */
+    -fx-cursor: hand; /* Cambia el cursor a una mano cuando se pasa por encima */
+}
+
+.button:hover {
+    -fx-background-color: #f5f5f5; /* Cambio sutil al pasar el mouse */
+}
+
+/* Style the tab content */
+.tabcontent {
+    -fx-display: none; /* Esta propiedad no existe en JavaFX, tendrás que controlar la visibilidad con Java */
+    -fx-padding: 6px 12px;
+    /* No hay una propiedad directa de JavaFX para border-top none, tendrías que configurar los bordes individualmente */
+}
+
+#noHayAerolineasLabel {
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+
+    -fx-font-size: 14px;
+}
+
+#bienvenidoLabel{
+
+    -fx-font-size: 30px;
+}
+.table-view .column-header-background .label {
+    -fx-background-color: #1e3d7b; /* Cambia este color al tono de azul oscuro que prefieras */
+    -fx-text-fill: white; /* Cambia el color del texto a blanco para mejor contraste */
+}

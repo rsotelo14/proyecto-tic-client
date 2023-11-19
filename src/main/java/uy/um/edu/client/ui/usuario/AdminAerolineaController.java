@@ -1,5 +1,7 @@
 package uy.um.edu.client.ui.usuario;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -95,7 +97,8 @@ public class AdminAerolineaController {
 
     private ListView<String> aeropuertosAsociadosListView;
 
-
+    @FXML
+    private Tab aeropuertosAsociadosTab;
     @FXML
     private TextField txtCorreoPasajero;
     @FXML
@@ -109,6 +112,9 @@ public class AdminAerolineaController {
     @FXML
     private TextField txtPasaporte;
     @FXML
+    private TabPane tabPane;
+
+    @FXML
     private TextField txtAgregarPasaporte;
     @FXML
     private TextField txtCodigoVueloPasajero;
@@ -120,6 +126,7 @@ public class AdminAerolineaController {
     private ChoiceBox<Integer> cantidadValijas;
     @FXML
     private TextField txtCheckInCodigoVuelo;
+
     private AdminAerolinea adminAerolinea;
     private Aerolinea aerolinea;
     private List<Aeropuerto> aeropuertosAsociados;
@@ -153,6 +160,19 @@ public class AdminAerolineaController {
         }
         horaLlegadaMinutos.setItems(minutos);
         horaSalidaMinutos.setItems(minutos);
+        tabPane.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Tab>() {
+            @Override
+            public void changed(ObservableValue<? extends Tab> observable, Tab oldTab, Tab newTab) {
+                onTabSelectionChanged(newTab);
+            }
+        });
+
+    }
+    public void onTabSelectionChanged(Tab tab){
+        if (tab == aeropuertosAsociadosTab){
+            mostrarAeropuertosAsociadosAction(null);
+        }
+
 
         cantidadValijas.getItems().addAll(0,1,2,3);
         cantidadValijas.setValue(0);

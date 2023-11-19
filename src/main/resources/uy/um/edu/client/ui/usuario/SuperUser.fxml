@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 
-
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" >
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@/uy/um/edu/client/ui/usuario/style/appStyle.css, @/uy/um/edu/client/ui/usuario/style/adminStyle.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
   <tabs>
     <Tab text="Crear Aeropuerto">
       <content>
@@ -22,7 +25,7 @@
                   <Label layoutX="25.0" layoutY="175.0" text="Dirección" />
                   <TextField fx:id="txtTelefono" layoutX="203.0" layoutY="208.0" />
                   <Label layoutX="25.0" layoutY="212.0" text="Teléfono" />
-                  <Label layoutX="25.0" layoutY="238.0" prefHeight="17.0" prefWidth="429.0" text="Se debe proporcionar un correo y contraseña para crear un administrador." />
+                  <Label layoutX="25.0" layoutY="238.0" prefHeight="17.0" prefWidth="566.0" text="Se debe proporcionar un correo y contraseña para crear un administrador." />
                   <TextField fx:id="txtContrasenaAeropuerto" layoutX="202.0" layoutY="297.0" />
                   <Label layoutX="25.0" layoutY="268.0" text="Correo" />
                   <TextField fx:id="txtCorreoAeropuerto" layoutX="202.0" layoutY="264.0" />
@@ -40,7 +43,7 @@
                         <Label layoutX="25.0" layoutY="79.0" text="Nombre  Aerolinea" />
                         <TextField fx:id="txtCorreoAerolinea" layoutX="202.0" layoutY="173.0" />
                         <Label layoutX="25.0" layoutY="177.0" text="Correo" />
-                        <Label layoutX="25.0" layoutY="126.0" prefHeight="17.0" prefWidth="429.0" text="Se debe proporcionar un correo y contraseña para crear un administrador." />
+                        <Label layoutX="25.0" layoutY="126.0" prefHeight="17.0" prefWidth="564.0" text="Se debe proporcionar un correo y contraseña para crear un administrador." />
                         <TextField fx:id="txtContrasenaAerolinea" layoutX="202.0" layoutY="233.0" />
                         <Label layoutX="25.0" layoutY="237.0" text="Contraseña" />
                         <Button layoutX="202.0" layoutY="300.0" mnemonicParsing="false" onAction="#crearAerolineaAction" prefHeight="25.0" prefWidth="113.0" text="Crear Aerolinea" />
