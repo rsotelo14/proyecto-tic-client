@@ -392,9 +392,16 @@ public class AdministradorAeropuertoController {
                     setText(null);
                 } else {
                     HBox hbox = new HBox(10); // Espaciado entre elementos
+
                     Label label = new Label(item.getCodigoVuelo() + " - " + item.getAeropuertoOrigen().getNombre() + " a " + item.getAeropuertoDestino().getNombre());
+                    label.setStyle("-fx-text-fill: black; -fx-font-size: 12px;");
                     Button validarBtn = new Button("Validar");
                     Button rechazarBtn = new Button("Rechazar");
+                    validarBtn.setStyle("-fx-padding: 5px 10px; -fx-font-size: 12px;");
+                    validarBtn.setPrefSize(80, 20);
+                    rechazarBtn.setStyle("-fx-padding: 5px 10px; -fx-font-size: 12px;");
+                    rechazarBtn.setPrefSize(80, 20);
+
 
                     validarBtn.setOnAction(e -> {
                         // Lógica para validar el vuelo
