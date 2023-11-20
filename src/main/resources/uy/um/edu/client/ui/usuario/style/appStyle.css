@@ -5,7 +5,7 @@
 
 }
 .label {
-    -fx-text-fill: black;
+    -fx-text-fill: white;
     -fx-font-weight:bold;
 
 
@@ -14,20 +14,6 @@
     -fx-text-fill: white;
 
 
-}
-
-.combo-box {
-    -fx-text-fill: black; /* Cambia el color del texto a negro */
-}
-.list-cell{
-    -fx-text-fill: black;
-}
-
-.choice-box{
-    -fx-text-fill: black;
-}
-.choice-box > .list-cell {
-    -fx-text-fill: black; /* Intenta con esto */
 }
 
 

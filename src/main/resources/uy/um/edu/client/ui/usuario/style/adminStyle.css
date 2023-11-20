@@ -5,7 +5,8 @@
     -fx-background-color: linear-gradient(to right bottom, #3A77FF, #74E6DE );
 }
 .label {
-    -fx-text-fill: white;}
+    -fx-text-fill: white;
+}
 
 
 
@@ -50,9 +51,6 @@
     -fx-padding: 6px 12px;
     /* No hay una propiedad directa de JavaFX para border-top none, tendrías que configurar los bordes individualmente */
 }
-.choice-box {
-    -fx-text-fill: black !important; /* Cambiar el color del texto a negro u otro color visible */
-}
 
 
 
@@ -73,12 +71,15 @@
     -fx-font-size: 14px;
     -fx-padding: 5px 10px;
 }
-.choice-box.label {
-    -fx-text-fill: black;
+.choice-box {
+    -fx-background-color:#001475;
 }
 .choice-box .context-menu {
-    -fx-background-color: linear-gradient(to right bottom, #3A77FF, #74E6DE );
+    -fx-background-color: #001475;
+   -fx-text-fill: black;
+
 }
-.choice-box .context-menu.label {
-    -fx-background-color: linear-gradient(to right bottom, #3A77FF, #74E6DE );
+.choice-box .menu-item {
+   -fx-text-fill: black;
+
 }
