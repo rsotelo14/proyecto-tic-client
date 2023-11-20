@@ -1,12 +1,11 @@
 .root {
     -fx-background-color: linear-gradient(to right bottom, #3A77FF, #74E6DE );
-    -fx-text-fill: white;
 
 
 
 }
 .label {
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-font-weight:bold;
 
 
@@ -37,4 +36,8 @@
 }
 #anchorLogin {
     -fx-text-fill: white;
+}
+
+.choice-box {
+    -fx-text-fill: black !important; /* Cambiar el color del texto a negro u otro color visible */
 }

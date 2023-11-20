@@ -3,10 +3,6 @@
 }
 .root {
     -fx-background-color: linear-gradient(to right bottom, #3A77FF, #74E6DE );
-
-
-
-
 }
 .label {
     -fx-text-fill: white;}
@@ -48,6 +44,16 @@
 }
 
 /* Style the tab content */
+
+.tabcontent {
+    -fx-display: none; /* Esta propiedad no existe en JavaFX, tendrás que controlar la visibilidad con Java */
+    -fx-padding: 6px 12px;
+    /* No hay una propiedad directa de JavaFX para border-top none, tendrías que configurar los bordes individualmente */
+}
+.choice-box {
+    -fx-text-fill: black !important; /* Cambiar el color del texto a negro u otro color visible */
+}
+
 
 
 #noHayAerolineasLabel {

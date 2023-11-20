@@ -36,6 +36,7 @@
                         <Font size="14.0" />
                      </font></Label>
                   <TextField fx:id="txtTelefono" layoutX="203.0" layoutY="208.0" />
+
                   <Label layoutX="25.0" layoutY="212.0" text="Teléfono">
                      <font>
                         <Font size="14.0" />
@@ -55,6 +56,7 @@
                         <Font size="14.0" />
                      </font></Label>
                   <Button layoutX="194.0" layoutY="376.0" mnemonicParsing="false" onAction="#crearAeropuertoAction" prefHeight="40.0" prefWidth="212.0" text="Crear Aeropuerto" />
+
               </children></AnchorPane>
 
             </content>
