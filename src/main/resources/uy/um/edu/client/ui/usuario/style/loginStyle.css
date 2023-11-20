@@ -28,7 +28,7 @@
 }
 .pane-class {
     -fx-background-radius: 30; /* This will create rounded corners with a radius of 30 */
-    -fx-padding: 20; /* Add padding if needed */
+    /*-fx-padding: 20;  Add padding if needed */
     /* You can add a border as well if desired */
     -fx-border-color: #ffffff; /* This sets the border color to white */
     -fx-border-width: 2; /* This sets the border width */

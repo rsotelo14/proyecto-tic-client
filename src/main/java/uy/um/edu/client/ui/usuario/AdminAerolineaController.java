@@ -1,5 +1,6 @@
 package uy.um.edu.client.ui.usuario;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -129,6 +130,9 @@ public class AdminAerolineaController {
     @FXML
     private TextField txtCheckInCodigoVuelo;
 
+    @FXML
+    private Label noHayAeropuertosLabel;
+
     private AdminAerolinea adminAerolinea;
     private Aerolinea aerolinea;
     private List<Aeropuerto> aeropuertosAsociados;
@@ -168,6 +172,18 @@ public class AdminAerolineaController {
                 onTabSelectionChanged(newTab);
             }
         });
+        Platform.runLater(() -> {
+            choiceBoxAeropuertoDestino.setStyle("-fx-text-fill: black");
+            choiceBoxAeropuertoOrigen.setStyle("-fx-text-fill: black");
+            choiceBoxAvion.setStyle("-fx-text-fill: black");
+            cantidadValijas.setStyle("-fx-text-fill: black");
+            horaLlegadaHoras.setStyle("-fx-text-fill: black");
+            horaLlegadaMinutos.setStyle("-fx-text-fill: black");
+            horaSalidaHoras.setStyle("-fx-text-fill: black");
+
+
+        });
+
 
 
         cantidadValijas.getItems().clear();
@@ -175,6 +191,7 @@ public class AdminAerolineaController {
         cantidadValijas.setValue(0);
 
     }
+
     public void onTabSelectionChanged(Tab tab){
         if (tab == aeropuertosAsociadosTab){
             mostrarAeropuertosAsociadosAction(null);
@@ -365,7 +382,9 @@ public class AdminAerolineaController {
 
         }
         if (aeropuertosAsociados.size() == 0){
-            showAlert("No hay aerolineas asociadas", "No hay aerolineas asociadas a este aeropuerto");
+            //showAlert("No hay aerolineas asociadas", "No hay aerolineas asociadas a este aeropuerto");
+            noHayAeropuertosLabel.setVisible(true);
+        }else{noHayAeropuertosLabel.setVisible(false);
         }
 
         aeropuertosAsociadosListView.setItems(aeropuertosObservable);
