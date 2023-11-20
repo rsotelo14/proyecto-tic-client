@@ -98,6 +98,8 @@ public class AdminAerolineaController {
     private ListView<String> aeropuertosAsociadosListView;
 
     @FXML
+    private Tab crearVueloTab;
+    @FXML
     private Tab aeropuertosAsociadosTab;
     @FXML
     private TextField txtCorreoPasajero;
@@ -167,15 +169,26 @@ public class AdminAerolineaController {
             }
         });
 
+
+        cantidadValijas.getItems().clear();
+        cantidadValijas.getItems().addAll(0,1,2,3);
+        cantidadValijas.setValue(0);
+
     }
     public void onTabSelectionChanged(Tab tab){
         if (tab == aeropuertosAsociadosTab){
             mostrarAeropuertosAsociadosAction(null);
         }
 
+        if (tab == crearVueloTab){
+            avionesAsociados= (List<Avion>) avionService.obtenerAvionesAerolinea(aerolinea);
+            choiceBoxAvion.getItems().clear();
+            choiceBoxAvion.getItems().addAll(avionesAsociados);
+            choiceBoxAvion.getItems().add(null);
+        }
 
-        cantidadValijas.getItems().addAll(0,1,2,3);
-        cantidadValijas.setValue(0);
+
+
 
     }
     @FXML
@@ -372,6 +385,8 @@ public class AdminAerolineaController {
         pasaporteCodigoVuelo.setCodigoVuelo(codigoVuelo);
         try {
             pasajeroService.enviarPasaporteCodigoVuelo(pasaporteCodigoVuelo);
+            showAlert("Pasajero asociado", "El pasajero se ha asociado al vuelo correctamente.");
+            limpiarCampos();
         } catch (EntidadYaExiste e) {
             showAlert(
                     "Pasajero ya asociado !",
@@ -381,8 +396,7 @@ public class AdminAerolineaController {
                     "Pasajero no existe !",
                     "El pasajero no existe");
         }
-        showAlert("Pasajero asociado", "El pasajero se ha asociado al vuelo correctamente.");
-        limpiarCampos();
+
     }
 
     @FXML

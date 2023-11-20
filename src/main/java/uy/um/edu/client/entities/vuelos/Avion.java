@@ -88,8 +88,6 @@ public class Avion {
 
     @Override
     public String toString() {
-        return "Avion{" +
-                "codigo='" + codigo + '\'' +
-                '}';
+        return codigo;
     }
 }

@@ -26,9 +26,9 @@
                   <TextField fx:id="txtTelefono" layoutX="203.0" layoutY="208.0" />
                   <Label layoutX="25.0" layoutY="212.0" text="Teléfono" />
                   <Label layoutX="25.0" layoutY="238.0" prefHeight="17.0" prefWidth="566.0" text="Se debe proporcionar un correo y contraseña para crear un administrador." />
+                  <TextField fx:id="txtCorreoAeropuerto" layoutX="202.0" layoutY="264.0" />
                   <TextField fx:id="txtContrasenaAeropuerto" layoutX="202.0" layoutY="297.0" />
                   <Label layoutX="25.0" layoutY="268.0" text="Correo" />
-                  <TextField fx:id="txtCorreoAeropuerto" layoutX="202.0" layoutY="264.0" />
                   <Label layoutX="25.0" layoutY="301.0" text="Contraseña" />
                   <Button layoutX="202.0" layoutY="335.0" mnemonicParsing="false" onAction="#crearAeropuertoAction" prefHeight="25.0" prefWidth="113.0" text="Crear Aeropuerto" />
               </children></AnchorPane>
