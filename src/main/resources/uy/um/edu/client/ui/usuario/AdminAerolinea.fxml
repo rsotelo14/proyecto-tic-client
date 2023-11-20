@@ -107,7 +107,7 @@
                               <Font size="15.0" />
                            </font>
                         </Button>
-                        <ChoiceBox fx:id="choiceBoxAeropuertoOrigen" layoutX="166.0" layoutY="73.0" prefHeight="30.0" prefWidth="133.0" />
+                        <ChoiceBox fx:id="choiceBoxAeropuertoOrigen" style="-fx-text-fill: black" layoutX="166.0" layoutY="73.0" prefHeight="30.0" prefWidth="133.0" />
                         <ChoiceBox fx:id="choiceBoxAeropuertoDestino" layoutX="166.0" layoutY="116.0" prefHeight="30.0" prefWidth="134.0" />
 
                         <ChoiceBox fx:id="choiceBoxAvion" layoutX="429.0" layoutY="206.0" prefWidth="150.0" />

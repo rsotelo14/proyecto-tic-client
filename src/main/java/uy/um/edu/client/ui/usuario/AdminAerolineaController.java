@@ -179,6 +179,7 @@ public class AdminAerolineaController {
             horaLlegadaMinutos.setStyle("-fx-text-fill: black");
             horaSalidaHoras.setStyle("-fx-text-fill: black");
 
+
         });
 
 

@@ -15,12 +15,6 @@
 
 
 
-.choice-box {
-    -fx-text-fill: black;
-}
-.choice-box .list-cell {
-    -fx-text-fill: black; /* Text color for the dropdown items */
-}
 
 
 
@@ -72,4 +66,13 @@
 .list-view .button{
     -fx-font-size: 14px;
     -fx-padding: 5px 10px;
+}
+.choice-box.label {
+    -fx-text-fill: black;
+}
+.choice-box .context-menu {
+    -fx-background-color: linear-gradient(to right bottom, #3A77FF, #74E6DE );
+}
+.choice-box .context-menu.label {
+    -fx-background-color: linear-gradient(to right bottom, #3A77FF, #74E6DE );
 }
